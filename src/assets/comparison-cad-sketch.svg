@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" width="480" height="260" preserveAspectRatio="xMidYMid slice"><rect width="480" height="260" fill="#f6f8fb"/>
+<g fill="none" stroke="#8a97a8" stroke-width="1.2" opacity=".8">
+<path d="M60 150 Q60 70 160 60 L320 55 Q400 60 410 130 L410 190 Q400 230 320 232 L150 236 Q70 232 60 190z"/>
+<path d="M80 150 Q80 85 165 78 L315 74 Q385 80 392 135 L392 185 Q385 215 315 216 L155 218 Q90 215 80 185z"/>
+<circle cx="170" cy="150" r="42"/><circle cx="170" cy="150" r="22"/><circle cx="310" cy="145" r="34"/><circle cx="310" cy="145" r="15"/>
+<path d="M410 130 L460 120 L470 200 L410 190"/><path d="M60 150 L20 160 L22 200 L60 190"/>
+<line x1="20" y1="245" x2="470" y2="245" stroke-dasharray="6 4"/><line x1="170" y1="40" x2="170" y2="250" stroke-dasharray="10 4 2 4"/><line x1="310" y1="40" x2="310" y2="250" stroke-dasharray="10 4 2 4"/>
+</g><g opacity=".75"><rect x="12" y="226" rx="6" width="269.6" height="22" fill="#0b1f3a" fill-opacity=".55"/><text x="24" y="241" font-family="Inter,Arial,sans-serif" font-size="11" fill="#fff">placeholder · comparison-cad-sketch.svg</text></g></svg>

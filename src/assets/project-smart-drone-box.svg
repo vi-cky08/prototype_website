@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#7d858f"/><stop offset=".35" stop-color="#e3e7ec"/><stop offset=".6" stop-color="#a9b0b9"/><stop offset="1" stop-color="#5f6670"/></linearGradient><linearGradient id="metalV" y1="0" y2="1" x1="0" x2="0"><stop offset="0" stop-color="#d9dde2"/><stop offset="1" stop-color="#8a929c"/></linearGradient><linearGradient id="floor" y1="0" y2="1" x1="0" x2="0"><stop offset="0" stop-color="#d8dde3"/><stop offset="1" stop-color="#b6bdc6"/></linearGradient></defs><rect width="400" height="300" fill="#e9edf1"/><rect y="215" width="400" height="85" fill="url(#floor)"/><ellipse cx="200" cy="262" rx="150" ry="14" fill="#000" opacity=".18"/>
+<path d="M70 110 L200 80 L330 110 L330 240 L200 268 L70 240z" fill="#1f3358"/>
+<path d="M70 110 L200 80 L330 110 L200 140z" fill="#2c4675"/>
+<path d="M200 140 L330 110 L330 240 L200 268z" fill="#162746"/>
+<rect x="110" y="150" width="60" height="70" rx="8" fill="none" stroke="#0e1a30" stroke-width="5"/>
+<rect x="235" y="150" width="60" height="70" rx="8" fill="none" stroke="#0c1628" stroke-width="5"/>
+<circle cx="140" cy="185" r="12" fill="#8fa6c9" opacity=".6"/></svg>
