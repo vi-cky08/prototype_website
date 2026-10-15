@@ -13,8 +13,6 @@ import {
   ShieldCheck,
   SquarePen,
 } from 'lucide-react'
-import cadSketch from '../assets/comparison-cad-sketch.svg'
-import machinedParts from '../assets/comparison-machined-parts.svg'
 
 export const reasons = {
   title: 'Why Manufacturers Choose Us',
@@ -27,37 +25,6 @@ export const reasons = {
     { icon: ScanSearch, title: 'Inspection & Testing', text: 'Verification before deployment.' },
     { icon: Network, title: 'Production Network', text: 'Curated manufacturing partners.' },
   ],
-}
-
-export const comparison = {
-  eyebrow: 'The Real Difference',
-  title: 'The Problem With Most Design Companies',
-  subtitle: 'Many design companies stop at drawings. We go further.',
-  others: {
-    title: 'Most Design Companies',
-    items: [
-      'Only CAD Models',
-      'No Manufacturing Knowledge',
-      'No Tooling Understanding',
-      'No Assembly Planning',
-      'No Production Support',
-    ],
-    image: cadSketch,
-    imageAlt: 'Line drawing of a gearbox housing CAD model',
-  },
-  us: {
-    title: 'Prototype Design',
-    items: [
-      'Design for Manufacturing',
-      'Rapid Prototyping',
-      'Tool & Die Knowledge',
-      'Assembly Validation',
-      'Vendor Coordination',
-      'Production Readiness',
-    ],
-    image: machinedParts,
-    imageAlt: 'Machined metal production parts',
-  },
 }
 
 export const journey = {

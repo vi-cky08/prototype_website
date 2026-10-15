@@ -9,7 +9,7 @@ export const hero = {
   lead: 'Prototype Design is the engineering brand of GICE Design & Development Pvt Ltd.',
   body: 'We transform ideas into manufacturable products through Design, DFMA, Rapid Prototyping, Tooling, Validation and Production Support.',
   primaryCta: { label: 'Explore Our Engineering Process', to: '/why-choose-us' },
-  secondaryCta: { label: 'View Case Studies', to: '/projects' },
+  secondaryCta: { label: 'View projects', to: '/projects' },
   image: heroImage,
   imageAlt: 'Machined metal gearbox part on a desk with a CAD model on the monitor behind',
 }

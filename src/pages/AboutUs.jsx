@@ -1,10 +1,14 @@
-import { useState } from 'react'
-import { ChevronDown, Quote } from 'lucide-react'
+import { Eye, ExternalLink, Quote, Target } from 'lucide-react'
 import SectionHeading, { Eyebrow, headingSizes } from '../components/SectionHeading.jsx'
 import CheckList from '../components/CheckList.jsx'
 import Button from '../components/Button.jsx'
+import Card from '../components/Card.jsx'
 import CompanyIntro from '../components/CompanyIntro.jsx'
+import Pattern from '../components/Pattern.jsx'
+import { Reveal, Stagger, StaggerItem } from '../components/Motion.jsx'
 import { charteredEngineer as ce, director, visionMission } from '../data/team.js'
+
+const visionIcons = [Eye, Target]
 
 function SubList({ title, items }) {
   return (
@@ -16,143 +20,144 @@ function SubList({ title, items }) {
 }
 
 export default function AboutUs() {
-  const [showMore, setShowMore] = useState(false)
-
   return (
     <>
       {/* A. The Company */}
       <CompanyIntro />
 
       {/* B. Vision & Mission */}
-      <section className="section-y">
+      <section className="section-y bg-white">
         <div className="container-site">
-          <div className="relative overflow-hidden rounded-2xl">
+          <Reveal className="on-dark relative overflow-hidden rounded-3xl shadow-lg">
             <img
               src={visionMission.image}
               alt=""
+              loading="lazy"
               className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f38]/90 via-[#0f1f38]/65 to-[#0f1f38]/20 md:to-transparent" />
-            <div className="relative grid px-5 py-10 text-white sm:px-12 md:grid-cols-2 md:py-16 lg:pr-56">
-              {[visionMission.vision, visionMission.mission].map((block, i) => (
-                <div
-                  key={block.title}
-                  className={
-                    i === 1
-                      ? 'mt-8 border-t border-white/30 pt-8 md:mt-0 md:border-t-0 md:border-l md:pt-0 md:pl-12'
-                      : 'md:pr-12'
-                  }
-                >
-                  <h2 className={`${headingSizes.h2} text-white`}>{block.title}</h2>
-                  <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/85 sm:text-[16px]">{block.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-800/80 to-navy-800/30" />
+            <Pattern variant="grid-light" />
+            <Stagger className="relative grid gap-5 px-5 py-8 sm:px-10 sm:py-12 md:grid-cols-2 md:gap-6 lg:py-16 lg:pr-48">
+              {[visionMission.vision, visionMission.mission].map((block, i) => {
+                const Icon = visionIcons[i]
+                return (
+                  <StaggerItem
+                    key={block.title}
+                    className="rounded-2xl border border-white/15 bg-white/[0.07] p-6 shadow-[inset_0_1px_0_rgb(255_255_255/0.08)] sm:p-8 md:backdrop-blur-md"
+                  >
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-accent">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
+                    </span>
+                    <h2 className={`${headingSizes.h2} mt-5 text-white`}>{block.title}</h2>
+                    <p className="mt-3 text-[15px] leading-relaxed text-white/85 sm:text-[16px]">{block.text}</p>
+                  </StaggerItem>
+                )
+              })}
+            </Stagger>
+          </Reveal>
         </div>
       </section>
 
       {/* C. Meet The Technical Director */}
-      <section className="section-y bg-white">
-        <div className="container-site">
-          <div className="card p-5 sm:p-9 lg:p-12">
-            <Eyebrow className="mb-3">{director.eyebrow}</Eyebrow>
-            <h2 className={headingSizes.h2}>{director.title}</h2>
-            <p className="mt-2 text-[15px]">{director.subtitle}</p>
+      <section className="section-y relative overflow-hidden bg-sky-soft">
+        <Pattern variant="dots" />
+        <div className="container-site relative">
+          <Reveal>
+            <Card accent className="p-5 sm:p-9 lg:p-12">
+              <Eyebrow className="mb-4">{director.eyebrow}</Eyebrow>
+              <h2 className={headingSizes.h2}>{director.title}</h2>
+              <p className="mt-2 text-[15px]">{director.subtitle}</p>
 
-            <div className="mt-9 grid gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:gap-10 lg:gap-14">
-              <img
-                src={director.image}
-                alt={director.imageAlt}
-                width="400"
-                height="500"
-                className="mx-auto aspect-[4/5] w-full max-w-[320px] rounded-2xl object-cover shadow-[0_24px_48px_-28px_rgb(11_31_58/0.5)] md:max-w-none"
-              />
+              <div className="mt-10 grid gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:gap-10 lg:gap-14">
+                {/* Gradient ring around the portrait */}
+                <div className="mx-auto w-full max-w-[320px] self-start rounded-[22px] bg-gradient-to-br from-primary-500 via-accent to-primary-700 p-[3px] shadow-[var(--shadow-glow)] md:max-w-none">
+                  <img
+                    src={director.image}
+                    alt={director.imageAlt}
+                    width="400"
+                    height="500"
+                    loading="lazy"
+                    className="aspect-[4/5] w-full rounded-[19px] bg-white object-cover"
+                  />
+                </div>
 
-              <div className="min-w-0">
-                <h3 className="text-[24px] font-bold text-highlight sm:text-[30px]">{director.name}</h3>
-                <p className="mt-1 text-[16px] font-medium text-navy/80">{director.role}</p>
+                <div className="min-w-0">
+                  <h3 className="text-[26px] font-extrabold tracking-tight text-primary sm:text-[32px]">{director.name}</h3>
+                  <p className="mt-1 text-[16px] font-medium text-navy/80">{director.role}</p>
 
-                <ul className="mt-6 space-y-3.5">
-                  {director.credentials.map(({ icon: Icon, text }) => (
-                    <li key={text} className="flex items-center gap-3.5 text-[15px] text-navy/80">
-                      <Icon className="h-5 w-5 shrink-0 text-primary" strokeWidth={1.7} aria-hidden="true" />
-                      {text}
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                    {director.credentials.map(({ icon: Icon, text }) => (
+                      <li
+                        key={text}
+                        className="flex items-center gap-3 rounded-xl border border-line bg-white px-3 py-2.5 text-[14px] text-navy/85 shadow-sm transition-colors duration-200 hover:border-primary-200"
+                      >
+                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary">
+                          <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+                        </span>
+                        {text}
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="mt-8 grid gap-7">
-                  <SubList title="Professional Experience" items={director.experience} />
-                  <SubList title="Specializations" items={director.specializations} />
+                  <div className="mt-8 grid gap-7 sm:grid-cols-2">
+                    <SubList title="Professional Experience" items={director.experience} />
+                    <SubList title="Specializations" items={director.specializations} />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <blockquote className="relative mt-10 rounded-2xl bg-sky px-5 py-7 pb-12 sm:px-14 sm:py-8">
-              <Quote className="absolute top-6 left-5 hidden h-7 w-7 rotate-180 fill-[#b9d0ec] text-[#b9d0ec] sm:block" aria-hidden="true" />
-              <p className="text-[16px] leading-relaxed text-navy/85 sm:pl-6 sm:text-[18px]">
-                {director.quote[0]}
-                <br />
-                {director.quote[1]}
-              </p>
-              <span
-                aria-hidden="true"
-                className="absolute right-6 bottom-5 flex rotate-[35deg] gap-1.5 text-primary/60"
-              >
-                <span className="h-7 w-[2px] rounded bg-current" />
-                <span className="h-7 w-[2px] rounded bg-current" />
-              </span>
-            </blockquote>
-          </div>
+              <blockquote className="relative mt-10 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 to-sky px-5 py-8 sm:px-14 sm:py-10">
+                <Quote
+                  className="absolute -top-2 left-2 h-20 w-20 rotate-180 fill-primary-100 text-primary-100 sm:-top-3 sm:left-4 sm:h-28 sm:w-28"
+                  aria-hidden="true"
+                />
+                <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary-500 to-accent" />
+                <p className="relative text-[17px] leading-relaxed font-medium text-navy/85 sm:pl-8 sm:text-[20px]">
+                  {director.quote[0]}
+                  <br />
+                  {director.quote[1]}
+                </p>
+              </blockquote>
+            </Card>
+          </Reveal>
         </div>
       </section>
 
       {/* D. What is a Chartered Engineer? */}
       <section className="section-y bg-white">
         <div className="container-site">
-          <SectionHeading eyebrow={ce.eyebrow} title={ce.title} subtitle={ce.description} />
-          <div className="mt-8 grid items-stretch gap-6 lg:grid-cols-2">
-            <div className="flex flex-col">
-              <div className="flex-1 rounded-[14px] border border-line bg-gradient-to-br from-[#e6effa] to-[#f2f7fd] p-5 sm:p-8">
-                <h3 className="text-[18px] font-bold text-[#1c4f92]">{ce.benefitsTitle}</h3>
+          <Reveal>
+            <SectionHeading eyebrow={ce.eyebrow} title={ce.title} subtitle={ce.description} />
+          </Reveal>
+          <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
+            <Reveal className="flex flex-col">
+              <Card accent className="flex-1 p-5 sm:p-8">
+                <h3 className="text-[18px] font-bold text-primary-700">{ce.benefitsTitle}</h3>
                 <CheckList items={ce.benefits} className="mt-5" />
-              </div>
+              </Card>
               <div className="mt-6">
                 <Button
-                  onClick={() => setShowMore((s) => !s)}
-                  aria-expanded={showMore}
-                  aria-controls="chartered-more"
-                  type="button"
+                  href={ce.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={ce.ctaAriaLabel}
                   className="w-full text-left sm:w-auto"
                 >
                   {ce.cta}
-                  <ChevronDown
-                    className={`h-4 w-4 shrink-0 transition-transform ${showMore ? 'rotate-180' : ''}`}
-                    aria-hidden="true"
-                  />
+                  <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
                 </Button>
               </div>
-            </div>
-            <img
-              src={ce.image}
-              alt={ce.imageAlt}
-              width="560"
-              height="340"
-              className="aspect-[28/17] w-full rounded-2xl object-cover shadow-[0_24px_48px_-28px_rgb(11_31_58/0.5)] lg:h-full"
-            />
-          </div>
-          <div
-            id="chartered-more"
-            className={`grid transition-[grid-template-rows] duration-300 ${showMore ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
-          >
-            <div className="min-h-0 overflow-hidden">
-              <div className="card mt-6 space-y-3 p-5 text-[15px] leading-relaxed sm:p-7">
-                {ce.more.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-            </div>
+            </Reveal>
+            <Reveal delay={0.1} className="flex items-center px-2 sm:px-6">
+              <img
+                src={ce.image}
+                alt={ce.imageAlt}
+                width="560"
+                height="340"
+                loading="lazy"
+                className="aspect-[28/17] w-full rounded-2xl object-cover shadow-[0_30px_60px_-28px_rgb(11_42_91/0.55)] ring-1 ring-line transition-transform duration-500 ease-out sm:-rotate-2 sm:hover:rotate-0"
+              />
+            </Reveal>
           </div>
         </div>
       </section>

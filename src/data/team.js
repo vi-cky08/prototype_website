@@ -40,6 +40,8 @@ export const charteredEngineer = {
     'Professional technical review',
   ],
   cta: 'Learn Why Chartered Engineering Matters',
+  ctaHref: 'https://www.ieindia.org/web/membersearch?option=find-discrepancies',
+  ctaAriaLabel: 'Learn why chartered engineering matters (opens in a new tab)',
   more: [
     'Chartered status is awarded by The Institution of Engineers (India) after a peer review of education, professional experience and engineering responsibility.',
     'For your product, this means calculations, drawings and design decisions are reviewed by someone accountable to a professional code of conduct, so problems are caught on paper instead of on the shop floor.',

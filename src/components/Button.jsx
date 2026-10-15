@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
 
+// Trailing icons slide right on hover; the hover lift only runs when motion is allowed.
 const base =
-  'inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60'
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 ease-out active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 [&>svg:last-child]:transition-transform [&>svg:last-child]:duration-200 hover:[&>svg:last-child]:translate-x-1 motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0'
 
 const variants = {
   primary:
-    'bg-primary text-white shadow-[0_6px_16px_-6px_rgb(22_86_166/0.6)] hover:-translate-y-0.5 hover:bg-primary-dark',
-  navy: 'bg-navy-deep text-white hover:bg-primary',
-  outline:
-    'border border-[#b9cce3] bg-white text-navy hover:-translate-y-0.5 hover:border-primary hover:text-primary',
-  light: 'bg-white text-navy hover:bg-sky',
+    'bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 bg-[length:200%_100%] bg-left text-white shadow-[0_8px_20px_-8px_rgb(31_95_191/0.65)] hover:bg-right hover:shadow-[0_14px_28px_-8px_rgb(31_95_191/0.7)]',
+  navy: 'bg-gradient-to-r from-navy-800 via-navy-700 to-navy-800 bg-[length:200%_100%] bg-left text-white shadow-[0_8px_20px_-10px_rgb(6_26_61/0.7)] hover:bg-right',
+  outline: 'border border-primary-300 bg-white text-primary-700 hover:border-primary hover:bg-primary hover:text-white',
+  light: 'bg-white text-navy shadow-sm hover:bg-primary-50',
+  whatsapp: 'bg-success text-white shadow-[0_8px_20px_-8px_rgb(21_128_61/0.6)] hover:bg-[#116932]',
 }
 
 export default function Button({ to, href, variant = 'primary', className = '', children, ...props }) {

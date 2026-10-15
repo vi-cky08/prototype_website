@@ -1,88 +1,116 @@
-import SectionHeading, { headingSizes } from '../components/SectionHeading.jsx'
+import SectionHeading, { Eyebrow, headingSizes } from '../components/SectionHeading.jsx'
 import FeatureCard from '../components/FeatureCard.jsx'
-import CheckList from '../components/CheckList.jsx'
+import SolutionPanel from '../components/SolutionPanel.jsx'
 import ProcessStep from '../components/ProcessStep.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
-import { clients, comparison, journey, reasons } from '../data/whyChooseUs.js'
+import Card from '../components/Card.jsx'
+import Pattern from '../components/Pattern.jsx'
+import Curve from '../components/Curve.jsx'
+import { Reveal, Stagger, StaggerItem } from '../components/Motion.jsx'
+import { clients, journey, reasons } from '../data/whyChooseUs.js'
+import { whySolution } from '../data/whySolution.js'
+
+const { solution, prototype } = whySolution
 
 export default function WhyChooseUs() {
   return (
     <>
-      {/* A. Why Manufacturers Choose Us */}
+      {/* B. Your Idea. Our Design. Real Solutions. */}
       <section className="section-y bg-white">
         <div className="container-site">
-          <div className="rounded-2xl border border-line bg-gradient-to-br from-[#eef4fb] to-[#f6f9fd] px-5 py-10 sm:px-10 lg:px-12 lg:py-12">
+          <Reveal className="mx-auto max-w-5xl text-center">
+            <Eyebrow className="mb-4 justify-center">{whySolution.eyebrow}</Eyebrow>
+            <h2 className="text-[clamp(1.75rem,1.2rem+2.2vw,2.75rem)] leading-[1.15] font-extrabold tracking-[-0.02em] text-navy">
+              {whySolution.title}
+              <span className="text-primary">{whySolution.titleHighlight}</span>
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-ink sm:text-base">{whySolution.subtitle}</p>
+          </Reveal>
+          <Stagger className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-[55fr_45fr] lg:items-start">
+            <StaggerItem>
+              <SolutionPanel
+                tone="green"
+                items={solution.items}
+                image={solution.image}
+                imageAlt={solution.imageAlt}
+                header={
+                  <>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-success px-3 py-1 text-[12px] font-semibold text-white">
+                      <solution.badgeIcon className="h-3.5 w-3.5" strokeWidth={2.4} aria-hidden="true" />
+                      {solution.badge}
+                    </span>
+                    <h3 className={`mt-4 text-navy ${headingSizes.h3}`}>{solution.title}</h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink">{solution.subtitle}</p>
+                  </>
+                }
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <SolutionPanel
+                tone="blue"
+                items={prototype.items}
+                header={
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-[var(--shadow-md)]">
+                      <prototype.icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className={`text-navy ${headingSizes.h3}`}>{prototype.title}</h3>
+                      <p className="mt-1.5 text-[15px] leading-relaxed text-ink">{prototype.subtitle}</p>
+                    </div>
+                  </div>
+                }
+              />
+            </StaggerItem>
+          </Stagger>
+        </div>
+      </section>
+
+       {/* A. Why Manufacturers Choose Us */}
+      <section className="section-y relative overflow-hidden bg-mesh">
+        <Pattern variant="dots" />
+        <div className="container-site relative">
+          <Reveal>
             <h1 className={headingSizes.h1}>{reasons.title}</h1>
-            <p className="mt-2 text-[16px] font-medium text-[#3f7cc4]">{reasons.subtitle}</p>
-            <ul className="mt-8 grid gap-y-2 sm:mt-10 sm:grid-cols-2 sm:gap-y-6 lg:grid-cols-3 lg:gap-y-8">
-              {reasons.items.map((item) => (
-                <li key={item.title} className="lg:px-4 lg:[&:not(:nth-child(3n+1))]:border-l lg:[&:not(:nth-child(3n+1))]:border-line">
-                  <FeatureCard {...item} />
-                </li>
-              ))}
-            </ul>
-          </div>
+            <p className="mt-3 text-[17px] font-semibold text-primary">{reasons.subtitle}</p>
+          </Reveal>
+          <Stagger as="ul" className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            {reasons.items.map((item, i) => (
+              <StaggerItem as="li" key={item.title}>
+                <FeatureCard {...item} index={i} />
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
       </section>
 
-      {/* B. The Problem With Most Design Companies */}
-      <section className="section-y">
-        <div className="container-site">
-          <SectionHeading eyebrow={comparison.eyebrow} title={comparison.title} subtitle={comparison.subtitle} />
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <article className="card flex flex-col overflow-hidden bg-gradient-to-b from-[#f7f8fa] to-white">
-              <div className="p-5 sm:p-9">
-                <h3 className="text-[20px] font-bold">{comparison.others.title}</h3>
-                <span className="mt-3 block h-[3px] w-24 rounded-full bg-gradient-to-r from-[#f08a5d] to-transparent" />
-                <CheckList variant="cross" items={comparison.others.items} className="mt-6 space-y-3.5!" />
-              </div>
-              <img
-                src={comparison.others.image}
-                alt={comparison.others.imageAlt}
-                className="mt-auto h-44 w-full object-cover opacity-80 mix-blend-multiply sm:h-56"
-              />
-            </article>
-
-            <article className="flex flex-col overflow-hidden rounded-[14px] border border-[#c9dcf2] bg-gradient-to-b from-[#e3eefa] to-[#eef5fc] shadow-[0_16px_40px_-18px_rgb(22_86_166/0.35)] ring-1 ring-primary/5">
-              <div className="p-5 sm:p-9">
-                <h3 className="text-[22px] font-bold text-[#1c4f92]">{comparison.us.title}</h3>
-                <CheckList
-                  variant="success"
-                  items={comparison.us.items}
-                  className="mt-6 space-y-3.5!"
-                  itemClassName="text-navy/85 font-medium"
-                />
-              </div>
-              <img
-                src={comparison.us.image}
-                alt={comparison.us.imageAlt}
-                className="mt-auto h-44 w-full object-cover sm:h-56"
-              />
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* C. End-to-End Engineering Solutions */}
-      <section className="section-y bg-white">
-        <div className="container-site">
-          <SectionHeading eyebrow={journey.eyebrow} title={journey.title} subtitle={journey.subtitle} />
-          <ol className="mt-12 grid lg:grid-cols-7">
+      {/* C. End-to-End Engineering Solutions: the dark contrast section */}
+      <section className="on-dark section-y relative overflow-hidden bg-navy-gradient">
+        <Curve position="top" className="text-white" />
+        <Pattern variant="grid-light" />
+        <div className="container-site relative py-4 lg:py-6">
+          <Reveal>
+            <SectionHeading light eyebrow={journey.eyebrow} title={journey.title} subtitle={journey.subtitle} />
+          </Reveal>
+          <ol className="mt-14 grid lg:grid-cols-7">
             {journey.steps.map((step, i) => (
               <ProcessStep key={step.title} step={step} index={i} isLast={i === journey.steps.length - 1} />
             ))}
           </ol>
         </div>
+        <Curve position="bottom" className="text-page" />
       </section>
 
       {/* D. Trusted By */}
       <section className="section-y">
         <div className="container-site">
-          <div className="card px-5 py-10 sm:px-10">
-            <h2 className={headingSizes.h2}>{clients.title}</h2>
-            <p className="mt-2 text-[15px]">{clients.subtitle}</p>
-            <LogoMarquee items={clients.logos} speed={35} className="mt-8" />
-          </div>
+          <Reveal>
+            <Card accent className="px-5 py-10 sm:px-10 sm:py-12">
+              <h2 className={headingSizes.h2}>{clients.title}</h2>
+              <p className="mt-2 text-[15px]">{clients.subtitle}</p>
+              <LogoMarquee items={clients.logos} speed={35} className="mt-8" />
+            </Card>
+          </Reveal>
         </div>
       </section>
     </>

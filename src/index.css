@@ -1,36 +1,114 @@
 @import 'tailwindcss';
 
-/* Design tokens sampled from the reference screenshots in ./photo */
+/* ===== Design tokens: defined once, used everywhere ===== */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  --color-navy: #0b1f3a;        /* headings */
-  --color-navy-deep: #051a30;   /* navbar CTA, footer */
-  --color-primary: #1656a6;     /* primary buttons, links */
-  --color-primary-dark: #0f468c;
-  --color-highlight: #1f5aa8;   /* blue words in headings */
-  --color-ink: #5a6778;         /* body text */
-  --color-muted: #8a96a6;       /* small labels */
-  --color-page: #f5f9fd;        /* page background */
-  --color-sky: #eaf2fb;         /* light-blue panels */
-  --color-sky-soft: #f2f7fd;
-  --color-line: #dde8f4;        /* thin card borders */
-  --color-danger: #d9573f;
-  --color-success: #1e8a4a;
+  /* Navy */
+  --color-navy-900: #061a3d;
+  --color-navy-800: #0b2a5b;
+  --color-navy-700: #163d7a;
+  --color-navy: var(--color-navy-800);        /* headings */
+  --color-navy-deep: var(--color-navy-900);   /* footer, dark sections */
 
-  --shadow-card: 0 1px 2px rgb(11 31 58 / 0.04), 0 8px 24px -8px rgb(11 31 58 / 0.10);
-  --shadow-card-hover: 0 2px 4px rgb(11 31 58 / 0.05), 0 16px 36px -10px rgb(22 86 166 / 0.22);
+  /* Primary blue */
+  --color-primary-50: #eef5fe;
+  --color-primary-100: #dbe9fc;
+  --color-primary-200: #bcd5f7;
+  --color-primary-300: #8db8ef;
+  --color-primary-400: #5592e0;
+  --color-primary-500: #2f74d3;
+  --color-primary-600: #1f5fbf;
+  --color-primary-700: #194c9c;
+  --color-primary: var(--color-primary-600);  /* buttons, links (6.1:1 on white) */
+  --color-primary-dark: var(--color-primary-700);
+  --color-highlight: var(--color-primary-600);
+
+  /* Accent: bright cyan, used sparingly (decoration and highlights on dark backgrounds) */
+  --color-accent: #22b8f0;
+
+  /* Text */
+  --color-ink: #4f5d70;         /* body text (6.6:1 on white) */
+  --color-muted: #5f6b7c;       /* small labels (5.4:1 on white, 4.8:1 on sky) */
+
+  /* Surfaces and borders */
+  --color-surface: #ffffff;
+  --color-page: #f6f9fd;
+  --color-sky: #eaf2fc;
+  --color-sky-soft: #f3f7fd;
+  --color-line: #dde7f3;
+  --color-line-strong: #c6d7ec;
+
+  /* Status */
+  --color-danger: #c8452c;
+  --color-success: #15803d;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgb(11 42 91 / 0.05), 0 2px 6px -2px rgb(11 42 91 / 0.06);
+  --shadow-md: 0 1px 2px rgb(11 42 91 / 0.04), 0 10px 28px -10px rgb(11 42 91 / 0.14);
+  --shadow-lg: 0 2px 6px rgb(11 42 91 / 0.05), 0 24px 48px -16px rgb(11 42 91 / 0.22);
+  --shadow-glow: 0 0 0 1px rgb(31 95 191 / 0.12), 0 18px 44px -14px rgb(31 95 191 / 0.45);
+  --shadow-card: var(--shadow-md);
+  --shadow-card-hover: var(--shadow-lg);
+
+  /* Radius scale: rounded-xl 12px, rounded-2xl 16px, rounded-3xl 24px */
+  --radius-card: 16px;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.4s ease-out both;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @layer base {
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary-300) var(--color-sky-soft);
+  }
   body {
     @apply bg-page font-sans text-ink antialiased;
   }
-  h1, h2, h3, h4 { @apply text-navy; }
-  :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  /* Quick first-paint fade so the app doesn't pop in */
+  #root { animation: var(--animate-fade-in); }
+
+  h1, h2, h3, h4 { @apply text-navy; text-wrap: balance; }
+  ::selection { background: var(--color-primary-200); color: var(--color-navy-900); }
+
+  :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: 6px; }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-sky-soft); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-300);
+    border-radius: 999px;
+    border: 2px solid var(--color-sky-soft);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-primary-500); }
+
+  /* Reduced motion: switch off every animation, transition and hover transform */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
+/* ===== Layout ===== */
 @utility container-site {
   width: 100%;
   max-width: 1200px;
@@ -39,16 +117,89 @@
   @media (width >= 40rem) { padding-inline: 1.5rem; }
 }
 
+/* Section rhythm: 64px mobile, 104px desktop */
 @utility section-y {
   padding-block: 4rem;
-  @media (width >= 64rem) { padding-block: 5.5rem; }
+  @media (width >= 64rem) { padding-block: 6.5rem; }
 }
 
+/* ===== Backgrounds ===== */
+/* Soft light-blue mesh with faint radial blobs */
+@utility bg-mesh {
+  background:
+    radial-gradient(40rem 26rem at 8% 0%, rgb(188 213 247 / 0.55), transparent 70%),
+    radial-gradient(34rem 24rem at 95% 15%, rgb(34 184 240 / 0.12), transparent 70%),
+    radial-gradient(30rem 20rem at 60% 100%, rgb(219 233 252 / 0.7), transparent 70%),
+    linear-gradient(180deg, #eef5fe 0%, #f6f9fd 60%, #ffffff 100%);
+}
+
+@utility bg-navy-gradient {
+  background:
+    radial-gradient(40rem 24rem at 85% 0%, rgb(34 184 240 / 0.16), transparent 70%),
+    radial-gradient(36rem 24rem at 0% 100%, rgb(47 116 211 / 0.25), transparent 70%),
+    linear-gradient(160deg, var(--color-navy-800) 0%, var(--color-navy-900) 100%);
+}
+
+/* Blueprint grid / dot patterns: put on an absolutely positioned layer; the mask fades the edges */
+@utility pattern-grid {
+  background-image:
+    linear-gradient(to right, rgb(31 95 191 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(31 95 191 / 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 40%, black 30%, transparent 100%);
+}
+
+@utility pattern-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, black 30%, transparent 100%);
+}
+
+@utility pattern-dots {
+  background-image: radial-gradient(rgb(31 95 191 / 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 25%, transparent 100%);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--color-primary-600) 10%, var(--color-primary-500) 50%, #1a9fd6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Cards ===== */
 @utility card {
-  background: #fff;
+  background: rgb(255 255 255 / 0.92);
   border: 1px solid var(--color-line);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
+}
+
+/* Thin gradient line along the top edge (painted as a background layer, so no extra markup) */
+@utility card-accent {
+  background:
+    linear-gradient(90deg, var(--color-primary-600), var(--color-accent)) top / 100% 3px no-repeat,
+    rgb(255 255 255 / 0.92);
+}
+
+/* Hover: lift, stronger shadow, blue border glow. The lift only runs when motion is allowed. */
+@utility card-hover {
+  transition: transform 0.3s var(--ease-out-soft), box-shadow 0.3s var(--ease-out-soft), border-color 0.3s;
+  &:hover {
+    border-color: var(--color-primary-200);
+    box-shadow: var(--shadow-lg), 0 0 0 4px rgb(31 95 191 / 0.06);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover { transform: translateY(-6px); }
+  }
+}
+
+/* Focus rings that stay visible on navy backgrounds */
+@utility on-dark {
+  & :focus-visible { outline-color: #ffffff; }
 }
 
 @utility no-scrollbar {

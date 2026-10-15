@@ -1,13 +1,19 @@
+import Card from './Card.jsx'
 import IconCircle from './IconCircle.jsx'
 
-export default function FeatureCard({ icon, title, text }) {
+export default function FeatureCard({ icon, title, text, index }) {
   return (
-    <div className="group flex items-start gap-4 rounded-xl p-3 sm:gap-5 sm:p-4 transition-colors duration-200 hover:bg-white/70">
-      <IconCircle icon={icon} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
-      <div className="min-w-0 pt-1">
-        <h3 className="text-[16px] font-bold">{title}</h3>
-        <p className="mt-1.5 text-[15px] leading-relaxed lg:max-w-[15rem] lg:text-[14px]">{text}</p>
-      </div>
-    </div>
+    <Card hover className="group relative h-full overflow-hidden p-6 sm:p-7">
+      {/* Number watermark */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-2 right-4 text-[64px] leading-none font-extrabold tracking-tighter text-primary-100/80 transition-colors duration-300 select-none group-hover:text-primary-200/80"
+      >
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <IconCircle icon={icon} shape="square" tone="gradient" className="relative" />
+      <h3 className="relative mt-5 text-[17px] font-bold">{title}</h3>
+      <p className="relative mt-2 text-[15px] leading-relaxed">{text}</p>
+    </Card>
   )
 }
