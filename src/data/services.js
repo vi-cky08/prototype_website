@@ -1,4 +1,16 @@
-import { Car, CircuitBoard, Cog, Flame, Package, Printer, Ruler, ShieldCheck, UtensilsCrossed, Wrench } from 'lucide-react'
+import {
+  Car,
+  CircuitBoard,
+  Cog,
+  Flame,
+  Package,
+  PenTool,
+  Printer,
+  Ruler,
+  ShieldCheck,
+  UtensilsCrossed,
+  Wrench,
+} from 'lucide-react'
 
 export const servicesIntro = {
   eyebrow: 'What We Build',
@@ -135,6 +147,34 @@ export const services = [
       'Cleaning tools',
       'Alignment fixtures',
       'Packaging fixtures',
+    ],
+  },
+  {
+    icon: PenTool,
+    title: 'Industrial Product Design & Engineering',
+    description: 'Concepts developed into detailed, manufacturing-ready engineering designs.',
+    products: [
+      'Concept development & 3D CAD',
+      'Electrical/electronics enclosures',
+      'Housings, covers & brackets',
+      'Jigs, fixtures & custom tools',
+      'DFM consultation',
+      'Assembly design, drawings & BOM',
+      'Prototype development',
+    ],
+  },
+  {
+    icon: Cog,
+    title: 'Special Purpose Machine Design & Development',
+    description: 'Custom machines designed around your process and production goals.',
+    products: [
+      'Machine concept development',
+      '3D CAD & assembly design',
+      'Automation & motion systems',
+      'Jigs, fixtures & handling systems',
+      'Pneumatic & mechanical integration',
+      'Drawings & BOM preparation',
+      'Prototype & manufacturing coordination',
     ],
   },
 ]

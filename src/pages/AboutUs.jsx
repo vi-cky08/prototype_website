@@ -4,7 +4,6 @@ import CheckList from '../components/CheckList.jsx'
 import Button from '../components/Button.jsx'
 import Card from '../components/Card.jsx'
 import CompanyIntro from '../components/CompanyIntro.jsx'
-import Pattern from '../components/Pattern.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Motion.jsx'
 import { charteredEngineer as ce, director, visionMission } from '../data/team.js'
 
@@ -36,7 +35,6 @@ export default function AboutUs() {
               className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-800/80 to-navy-800/30" />
-            <Pattern variant="grid-light" />
             <Stagger className="relative grid gap-5 px-5 py-8 sm:px-10 sm:py-12 md:grid-cols-2 md:gap-6 lg:py-16 lg:pr-48">
               {[visionMission.vision, visionMission.mission].map((block, i) => {
                 const Icon = visionIcons[i]
@@ -60,10 +58,9 @@ export default function AboutUs() {
 
       {/* C. Meet The Technical Director */}
       <section className="section-y relative overflow-hidden bg-sky-soft">
-        <Pattern variant="dots" />
         <div className="container-site relative">
           <Reveal>
-            <Card accent className="p-5 sm:p-9 lg:p-12">
+            <Card className="p-5 sm:p-9 lg:p-12">
               <Eyebrow className="mb-4">{director.eyebrow}</Eyebrow>
               <h2 className={headingSizes.h2}>{director.title}</h2>
               <p className="mt-2 text-[15px]">{director.subtitle}</p>
@@ -131,7 +128,7 @@ export default function AboutUs() {
           </Reveal>
           <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
             <Reveal className="flex flex-col">
-              <Card accent className="flex-1 p-5 sm:p-8">
+              <Card className="flex-1 p-5 sm:p-8">
                 <h3 className="text-[18px] font-bold text-primary-700">{ce.benefitsTitle}</h3>
                 <CheckList items={ce.benefits} className="mt-5" />
               </Card>

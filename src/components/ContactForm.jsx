@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { CircleCheck, Send } from 'lucide-react'
 import Button from './Button.jsx'
 import FormField from './FormField.jsx'
 import { CONTACT, whatsappLink } from '../data/contact.js'
+import { planEnquiry } from '../data/pricing.js'
 import { fieldOrder, fields, sections, validateField } from '../data/contactFormFields.js'
 
 // wa.me links get unreliable past ~2000 characters; leave headroom.
@@ -63,8 +65,8 @@ function buildWhatsAppUrl(values) {
 
 function SectionHeader({ number, title }) {
   return (
-    <div className="flex items-center gap-3 border-b border-primary-200 bg-primary-50 px-4 py-3 sm:px-5">
-      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-navy text-[14px] font-bold text-white">
+    <div className="flex items-center gap-3 border-b border-line bg-grey px-4 py-3 sm:px-5">
+      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-[4px] bg-navy text-[14px] font-bold text-white">
         {number}
       </span>
       <h3 className="text-[14px] font-bold tracking-[0.04em] text-navy uppercase">{title}</h3>
@@ -77,6 +79,13 @@ export default function ContactForm() {
   const [errors, setErrors] = useState({})
   // Holds the WhatsApp URL after a successful submit; doubles as the "sent" flag.
   const [sentUrl, setSentUrl] = useState('')
+  const plan = useSearchParams()[0].get('plan')
+
+  // /contact?plan=<id> (from /pricing): pre-fill the description, but never over text already typed.
+  useEffect(() => {
+    const sentence = planEnquiry(plan)
+    if (sentence) setValues((v) => (v.description ? v : { ...v, description: sentence }))
+  }, [plan])
 
   const change = (name, value) => {
     setValues((v) => ({ ...v, [name]: value }))
@@ -142,9 +151,7 @@ export default function ContactForm() {
   if (sentUrl) {
     return (
       <div className="flex flex-col items-center py-12 text-center" role="status">
-        <span className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-success/10 ring-8 ring-success/5">
-          <CircleCheck className="h-12 w-12 fill-success text-white" strokeWidth={2} aria-hidden="true" />
-        </span>
+        <CircleCheck className="h-14 w-14 text-success" strokeWidth={1.5} aria-hidden="true" />
         <h3 className="mt-5 text-[22px] font-bold">Almost done! Tap Send in WhatsApp.</h3>
         <p className="mt-2 max-w-sm">
           We opened WhatsApp with your enquiry filled in. Tap <strong>Send</strong> there to deliver it to our team at{' '}
@@ -171,13 +178,13 @@ export default function ContactForm() {
   return (
     <form noValidate onSubmit={submit} className="space-y-6">
       {sections.map((section) => (
-        <fieldset key={section.number} className="min-w-0 overflow-hidden rounded-xl border border-primary-200 bg-white">
+        <fieldset key={section.number} className="min-w-0 overflow-hidden rounded-[4px] border border-line bg-white">
           <legend className="sr-only">{section.title}</legend>
           <SectionHeader number={section.number} title={section.title} />
           <div
             className={`grid ${
               section.columns.length > 1
-                ? 'divide-y divide-primary-100 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:divide-x lg:divide-y-0'
+                ? 'divide-y divide-line lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:divide-x lg:divide-y-0'
                 : ''
             }`}
           >

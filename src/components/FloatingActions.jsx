@@ -5,7 +5,7 @@ import { whatsappLink } from '../data/contact.js'
 // Bottom-right floating actions: WhatsApp chat (always) and Back to top (after 600px of scroll).
 // Kept small and tucked into the corner (with safe-area padding) so they never cover content on phones.
 const fab =
-  'inline-flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ease-out motion-safe:hover:-translate-y-0.5'
+  'inline-flex h-12 w-12 items-center justify-center rounded-full transition-[opacity,background-color,border-color] duration-200'
 
 export default function FloatingActions() {
   const [showTop, setShowTop] = useState(false)
@@ -30,8 +30,8 @@ export default function FloatingActions() {
         aria-label="Back to top"
         tabIndex={showTop ? 0 : -1}
         aria-hidden={!showTop}
-        className={`${fab} border border-line bg-white/95 text-primary hover:bg-primary hover:text-white ${
-          showTop ? 'pointer-events-auto opacity-100' : 'translate-y-3 opacity-0'
+        className={`${fab} border border-line bg-white text-primary hover:border-primary ${
+          showTop ? 'pointer-events-auto opacity-100' : 'opacity-0'
         }`}
       >
         <ArrowUp className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
@@ -41,7 +41,7 @@ export default function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp (opens in a new tab)"
-        className={`${fab} pointer-events-auto bg-success text-white ring-4 ring-success/15 hover:bg-[#116932]`}
+        className={`${fab} pointer-events-auto bg-success text-white hover:bg-[#116932]`}
       >
         <MessageCircle className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
       </a>

@@ -1,7 +1,6 @@
 import { ArrowRight, BadgeCheck, Layers, Printer } from 'lucide-react'
 import Button from '../components/Button.jsx'
 import StatsStrip from '../components/StatsStrip.jsx'
-import Pattern from '../components/Pattern.jsx'
 import { Stagger, StaggerItem } from '../components/Motion.jsx'
 import { hero, stats } from '../data/home.js'
 
@@ -15,8 +14,7 @@ const badges = [
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden bg-mesh">
-        <Pattern variant="grid" />
+      <section className="relative overflow-hidden bg-grey">
         <div className="container-site relative grid items-center gap-12 pt-10 pb-28 sm:pt-14 sm:pb-32 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:pt-20 lg:pb-40">
           <Stagger onMount stagger={0.1} className="min-w-0">
             <StaggerItem as="p" className="flex items-center gap-2.5 text-[15px] font-semibold text-primary-700">
@@ -29,7 +27,7 @@ export default function Home() {
             >
               {hero.titleLead}
               <br />
-              {hero.titleBrand} <span className="text-gradient">{hero.titleHighlight}</span>
+              {hero.titleBrand} <span className="text-primary">{hero.titleHighlight}</span>
             </StaggerItem>
             <StaggerItem as="p" className="mt-6 max-w-lg text-[16px] leading-relaxed font-semibold text-navy/85 sm:text-[17px]">
               {hero.lead}
@@ -59,7 +57,7 @@ export default function Home() {
               className="absolute -inset-2 rounded-[28px] border border-white/80 bg-gradient-to-br from-white/70 to-primary-100/40 sm:-inset-3"
             />
             <StaggerItem className="relative">
-              <div className="motion-safe:md:animate-float">
+              <div>
                 <img
                   src={hero.image}
                   alt={hero.imageAlt}
@@ -73,7 +71,7 @@ export default function Home() {
             {badges.map(({ icon: Icon, label, className, delay }) => (
               <StaggerItem key={label} className={`absolute ${className}`}>
                 <span
-                  className="flex items-center gap-2 rounded-full border border-white bg-white/95 py-1.5 pr-3.5 pl-1.5 text-[12px] font-semibold whitespace-nowrap text-navy shadow-md motion-safe:md:animate-float sm:text-[13px]"
+                  className="flex items-center gap-2 rounded-full border border-white bg-white/95 py-1.5 pr-3.5 pl-1.5 text-[12px] font-semibold whitespace-nowrap text-navy shadow-md sm:text-[13px]"
                   style={{ animationDelay: delay }}
                 >
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white">

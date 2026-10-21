@@ -4,7 +4,6 @@ import ContactForm from '../components/ContactForm.jsx'
 import IconCircle from '../components/IconCircle.jsx'
 import Button from '../components/Button.jsx'
 import Card from '../components/Card.jsx'
-import Pattern from '../components/Pattern.jsx'
 import { Reveal } from '../components/Motion.jsx'
 import { CONTACT, contactIntro, mapsEmbed, mapsLink, whatsappLink } from '../data/contact.js'
 
@@ -25,8 +24,7 @@ function DetailRow({ icon, title, children }) {
 export default function Contact() {
   return (
     <>
-      <section className="relative overflow-hidden bg-mesh pt-10 pb-28 sm:pt-14 lg:pt-20 lg:pb-32">
-        <Pattern variant="grid" />
+      <section className="relative overflow-hidden bg-grey pt-10 pb-28 sm:pt-14 lg:pt-20 lg:pb-32">
         <Reveal className="container-site relative">
           <SectionHeading as="h1" {...contactIntro} />
         </Reveal>
@@ -35,15 +33,14 @@ export default function Contact() {
       <section className="relative z-10 -mt-20 pb-20 lg:pb-28">
         <div className="container-site grid gap-6 lg:gap-8">
           <Reveal className="min-w-0">
-            <Card accent className="h-full p-5 sm:p-9">
+            <Card className="h-full p-5 sm:p-9">
               <h2 className="text-[22px] font-bold">Tell us about your project</h2>
               <p className="mt-1.5 mb-7 text-[15px]">Fields marked * are required.</p>
               <ContactForm />
             </Card>
           </Reveal>
 
-          <Reveal as="aside" delay={0.1} className="on-dark relative flex min-w-0 flex-col overflow-hidden rounded-[var(--radius-card)] bg-navy-gradient p-5 shadow-lg sm:p-9">
-            <Pattern variant="grid-light" />
+          <Reveal as="aside" delay={0.1} className="on-dark relative flex min-w-0 flex-col overflow-hidden rounded-[var(--radius-card)] bg-navy p-5 shadow-lg sm:p-9">
             <div className="relative flex flex-1 flex-col lg:grid lg:grid-cols-2 lg:gap-10">
               <div className="flex flex-col">
                 <h2 className="text-[22px] font-bold text-white">Contact Details</h2>

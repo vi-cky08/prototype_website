@@ -1,7 +1,8 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { LazyMotion, MotionConfig, domAnimation, m, useReducedMotion } from 'framer-motion'
 
 // Shared motion primitives. LazyMotion + `m` keeps the framer-motion bundle small.
-// Every animation is opacity/transform only (no layout shift), runs once, eases out under 600ms,
+// Every animation is a plain opacity fade (no movement, no layout shift), runs once, eases out under 600ms,
 // and is skipped entirely when the visitor prefers reduced motion.
 
 export const EASE = [0.22, 1, 0.36, 1]
@@ -16,18 +17,34 @@ export function MotionProvider({ children }) {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.5, ease: EASE } },
 }
 
-/** Fades its content up when it scrolls into view. */
+// Only elements that start BELOW the visible screen are "armed" (hidden until scrolled into view).
+// Anything already on screen when the page loads is rendered visible straight away, so a refresh never flashes.
+// The check runs in a layout effect, which happens before the browser paints.
+function useArmed() {
+  const ref = useRef(null)
+  const [armed, setArmed] = useState(false)
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (el && el.getBoundingClientRect().top > window.innerHeight) setArmed(true)
+  }, [])
+  return [ref, armed]
+}
+
+/** Fades its content in when it scrolls into view. */
 export function Reveal({ as = 'div', delay = 0, className, children, ...props }) {
   const reduce = useReducedMotion()
+  const [ref, armed] = useArmed()
   const Tag = m[as]
   return (
     <Tag
+      key={armed ? 'armed' : 'plain'}
+      ref={ref}
       className={className}
-      initial={reduce ? false : 'hidden'}
+      initial={reduce || !armed ? false : 'hidden'}
       whileInView="show"
       viewport={VIEWPORT}
       variants={{ hidden: fadeUp.hidden, show: { ...fadeUp.show, transition: { ...fadeUp.show.transition, delay } } }}
@@ -38,15 +55,18 @@ export function Reveal({ as = 'div', delay = 0, className, children, ...props })
   )
 }
 
-/** Staggers its <StaggerItem> children. `onMount` plays on load (hero) instead of on scroll. */
+/** Staggers its <StaggerItem> children. Content already on screen at load is shown immediately. */
 export function Stagger({ as = 'div', stagger = 0.08, delay = 0, onMount = false, className, children, ...props }) {
   const reduce = useReducedMotion()
+  const [ref, armed] = useArmed()
   const Tag = m[as]
   const trigger = onMount ? { animate: 'show' } : { whileInView: 'show', viewport: VIEWPORT }
   return (
     <Tag
+      key={armed ? 'armed' : 'plain'}
+      ref={ref}
       className={className}
-      initial={reduce ? false : 'hidden'}
+      initial={reduce || !armed ? false : 'hidden'}
       {...trigger}
       variants={{ hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
       {...props}

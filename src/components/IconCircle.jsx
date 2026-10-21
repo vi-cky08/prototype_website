@@ -1,23 +1,23 @@
-// Icon in a soft circular or rounded-square background, with one stroke width site-wide.
+// Plain line icon (no background shape), with one stroke width site-wide.
+// `shape` is accepted for older call sites and ignored.
 const sizes = {
-  sm: 'h-11 w-11 [&>svg]:h-5 [&>svg]:w-5',
-  md: 'h-14 w-14 [&>svg]:h-6 [&>svg]:w-6',
-  lg: 'h-[72px] w-[72px] [&>svg]:h-8 [&>svg]:w-8',
+  sm: '[&>svg]:h-6 [&>svg]:w-6',
+  md: '[&>svg]:h-7 [&>svg]:w-7',
+  lg: '[&>svg]:h-9 [&>svg]:w-9',
 }
 
 const tones = {
-  light: 'border border-primary-100 bg-gradient-to-br from-white to-primary-50 text-primary shadow-sm',
-  gradient: 'bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-[0_10px_22px_-10px_rgb(31_95_191/0.8)]',
-  dark: 'border border-white/15 bg-white/10 text-accent',
+  light: 'text-primary',
+  gradient: 'text-primary',
+  navy: 'text-navy',
+  dark: 'text-accent',
 }
 
 export const ICON_STROKE = 1.75
 
-export default function IconCircle({ icon: Icon, size = 'md', shape = 'circle', tone = 'light', className = '' }) {
+export default function IconCircle({ icon: Icon, size = 'md', tone = 'light', className = '' }) {
   return (
-    <span
-      className={`inline-flex shrink-0 items-center justify-center ${shape === 'square' ? 'rounded-2xl' : 'rounded-full'} ${tones[tone]} ${sizes[size]} ${className}`}
-    >
+    <span className={`inline-flex shrink-0 items-center ${tones[tone]} ${sizes[size]} ${className}`}>
       <Icon strokeWidth={ICON_STROKE} aria-hidden="true" />
     </span>
   )

@@ -1,19 +1,18 @@
 // Shared fluid type scale (clamp-based): H1 32px → 52px, H2 26px → 40px, H3 20px → 24px.
 export const headingSizes = {
-  h1: 'text-[clamp(2rem,1.5rem+2.2vw,3.25rem)] leading-[1.1] font-extrabold tracking-[-0.025em]',
-  h2: 'text-[clamp(1.625rem,1.3rem+1.5vw,2.5rem)] leading-[1.15] font-extrabold tracking-[-0.02em]',
-  h3: 'text-[clamp(1.25rem,1.15rem+0.5vw,1.5rem)] leading-snug font-bold tracking-[-0.01em]',
+  h1: 'text-[clamp(2rem,1.5rem+2.2vw,3.25rem)] leading-[1.1] font-extrabold',
+  h2: 'text-[clamp(1.625rem,1.3rem+1.5vw,2.5rem)] leading-[1.15] font-extrabold',
+  h3: 'text-[clamp(1.25rem,1.15rem+0.5vw,1.5rem)] leading-snug font-bold',
 }
 
-// Small uppercase label with a short gradient line before it.
+// Plain small uppercase blue label above a heading.
 export function Eyebrow({ children, className = '', light = false }) {
   return (
     <p
-      className={`flex items-center gap-2.5 text-[12px] font-semibold tracking-[0.18em] uppercase ${
+      className={`flex items-center text-[13px] font-semibold tracking-[0.14em] uppercase ${
         light ? 'text-accent' : 'text-primary'
       } ${className}`}
     >
-      <span aria-hidden="true" className="h-[2px] w-6 shrink-0 rounded-full bg-gradient-to-r from-primary-500 to-accent" />
       {children}
     </p>
   )

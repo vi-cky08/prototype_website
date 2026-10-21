@@ -1,8 +1,8 @@
 import { ChevronDown, CircleAlert } from 'lucide-react'
 
 const inputCls = (err) =>
-  `block w-full rounded-md border bg-white px-3 text-base text-navy placeholder:text-[#9aa5b4] transition-colors focus:ring-3 focus:outline-none md:text-[14px] ${
-    err ? 'border-danger focus:border-danger focus:ring-danger/15' : 'border-primary-200 hover:border-primary-300 focus:border-primary focus:ring-primary/15'
+  `block w-full rounded-[4px] border bg-white px-3 text-base text-ink placeholder:text-[#8a929e] transition-colors focus:ring-1 focus:outline-none md:text-[14px] ${
+    err ? 'border-danger focus:border-danger focus:ring-danger' : 'border-line hover:border-[#b9bfc8] focus:border-primary focus:ring-primary'
   }`
 
 const heightCls = 'min-h-11 md:min-h-10'
@@ -42,7 +42,7 @@ export default function FormField({ name, field, value, error, onChange, onBlur,
       <div className="relative">
         <select
           {...common}
-          className={`${inputCls(error)} ${heightCls} appearance-none pr-9 ${value ? '' : 'text-[#9aa5b4]'}`}
+          className={`${inputCls(error)} ${heightCls} appearance-none pr-9 ${value ? '' : 'text-[#8a929e]'}`}
         >
           <option value="" disabled>
             {attrs.placeholder}

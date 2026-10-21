@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 export const reasons = {
-  title: 'Why Manufacturers Choose Us',
+  title: 'Why clients prefer us',
   subtitle: 'Built on Engineering. Driven by Results.',
   items: [
     { icon: ShieldCheck, title: 'DFMA First', text: 'Designed for manufacturing from day one.' },

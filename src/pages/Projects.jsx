@@ -5,7 +5,6 @@ import ProjectCard from '../components/ProjectCard.jsx'
 import ProjectModal from '../components/ProjectModal.jsx'
 import Button from '../components/Button.jsx'
 import ServiceCard from '../components/ServiceCard.jsx'
-import Pattern from '../components/Pattern.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Motion.jsx'
 import { projects, projectsIntro } from '../data/projects.js'
 import { services, servicesCta, servicesIntro } from '../data/services.js'
@@ -15,8 +14,7 @@ export default function Projects() {
 
   return (
     <>
-      <section className="section-y relative overflow-hidden bg-mesh">
-        <Pattern variant="grid" className="h-[480px]" />
+      <section className="section-y relative overflow-hidden bg-grey">
         <Reveal className="container-site relative">
           <SectionHeading as="h1" {...projectsIntro} />
         </Reveal>
@@ -42,7 +40,7 @@ export default function Projects() {
             <SectionHeading {...servicesIntro} />
           </Reveal>
 
-          <Stagger as="ul" className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <Stagger as="ul" className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {services.map((s) => (
               <StaggerItem as="li" key={s.title} className="h-full">
                 <ServiceCard {...s} />
@@ -50,8 +48,7 @@ export default function Projects() {
             ))}
           </Stagger>
 
-          <Reveal className="on-dark relative mt-12 overflow-hidden rounded-3xl bg-navy-gradient shadow-lg">
-            <Pattern variant="grid-light" />
+          <Reveal className="on-dark relative mt-12 overflow-hidden rounded-3xl bg-navy shadow-lg">
             <div className="relative flex flex-col gap-5 px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-9">
               <p className="text-[18px] font-bold tracking-tight text-white sm:text-[20px]">{servicesCta.text}</p>
               <Button to={servicesCta.to} variant="light" className="w-full shrink-0 sm:w-auto">

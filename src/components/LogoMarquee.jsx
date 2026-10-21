@@ -52,7 +52,7 @@ export default function LogoMarquee({ items, speed = 35, direction = 'left', cla
   return (
     <div
       ref={containerRef}
-      className={`group overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)] motion-reduce:overflow-x-auto ${className}`}
+      className={`group overflow-hidden motion-reduce:overflow-x-auto ${className}`}
     >
       <div
         className="flex w-max animate-marquee py-2 group-hover:[animation-play-state:paused] motion-reduce:animate-none"

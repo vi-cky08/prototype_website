@@ -4,8 +4,6 @@ import SolutionPanel from '../components/SolutionPanel.jsx'
 import ProcessStep from '../components/ProcessStep.jsx'
 import LogoMarquee from '../components/LogoMarquee.jsx'
 import Card from '../components/Card.jsx'
-import Pattern from '../components/Pattern.jsx'
-import Curve from '../components/Curve.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Motion.jsx'
 import { clients, journey, reasons } from '../data/whyChooseUs.js'
 import { whySolution } from '../data/whySolution.js'
@@ -67,8 +65,7 @@ export default function WhyChooseUs() {
       </section>
 
        {/* A. Why Manufacturers Choose Us */}
-      <section className="section-y relative overflow-hidden bg-mesh">
-        <Pattern variant="dots" />
+      <section className="section-y relative overflow-hidden bg-grey">
         <div className="container-site relative">
           <Reveal>
             <h1 className={headingSizes.h1}>{reasons.title}</h1>
@@ -85,9 +82,7 @@ export default function WhyChooseUs() {
       </section>
 
       {/* C. End-to-End Engineering Solutions: the dark contrast section */}
-      <section className="on-dark section-y relative overflow-hidden bg-navy-gradient">
-        <Curve position="top" className="text-white" />
-        <Pattern variant="grid-light" />
+      <section className="on-dark section-y relative overflow-hidden bg-navy">
         <div className="container-site relative py-4 lg:py-6">
           <Reveal>
             <SectionHeading light eyebrow={journey.eyebrow} title={journey.title} subtitle={journey.subtitle} />
@@ -98,14 +93,13 @@ export default function WhyChooseUs() {
             ))}
           </ol>
         </div>
-        <Curve position="bottom" className="text-page" />
       </section>
 
       {/* D. Trusted By */}
       <section className="section-y">
         <div className="container-site">
           <Reveal>
-            <Card accent className="px-5 py-10 sm:px-10 sm:py-12">
+            <Card className="px-5 py-10 sm:px-10 sm:py-12">
               <h2 className={headingSizes.h2}>{clients.title}</h2>
               <p className="mt-2 text-[15px]">{clients.subtitle}</p>
               <LogoMarquee items={clients.logos} speed={35} className="mt-8" />

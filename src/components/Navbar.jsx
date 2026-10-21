@@ -5,25 +5,17 @@ import Logo from './Logo.jsx'
 import Button from './Button.jsx'
 import { navLinks } from '../data/site.js'
 
-// Underline slides in from the left on hover and stays for the active link.
+// Active link: blue text with a 2px blue underline. Hover only changes the colour.
 const linkClass = ({ isActive }) =>
-  `relative py-2 text-[14px] font-medium transition-colors duration-200 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-[2px] after:origin-left after:rounded-full after:bg-gradient-to-r after:from-primary after:to-accent after:transition-transform after:duration-300 after:ease-out ${
-    isActive ? 'text-primary after:scale-x-100' : 'text-[#3d4b5f] after:scale-x-0 hover:text-primary hover:after:scale-x-100'
+  `relative inline-flex min-h-11 items-center text-[14px] font-medium transition-colors duration-200 after:absolute after:inset-x-0 after:bottom-1.5 after:h-[2px] after:bg-primary ${
+    isActive ? 'text-primary after:block' : 'text-ink after:hidden hover:text-primary'
   }`
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
 
   useEffect(() => setOpen(false), [pathname])
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -33,21 +25,10 @@ export default function Navbar() {
   }, [open])
 
   return (
-    // The outer wrapper keeps a fixed height so the bar can shrink on scroll without shifting the page.
-    <div className="pointer-events-none sticky top-0 z-50 h-16 lg:h-[76px]">
-      <header
-        className={`pointer-events-auto relative z-10 border-b transition-[background-color,box-shadow,border-color] duration-300 ${
-          scrolled || open
-            ? 'border-line/80 bg-white/95 shadow-[0_8px_24px_-14px_rgb(11_42_91/0.25)] md:bg-white/80 md:backdrop-blur-lg'
-            : 'border-transparent bg-white/80 md:bg-white/70 md:backdrop-blur-md'
-        }`}
-      >
-        <nav
-          className={`container-site flex items-center justify-between gap-4 transition-[height] duration-300 ease-out lg:gap-6 ${
-            scrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-[76px]'
-          }`}
-          aria-label="Main"
-        >
+    // Solid white bar with a 1px bottom border; fixed height (64px, 72px from 1024px).
+    <div className="sticky top-0 z-50">
+      <header className="relative z-10 border-b border-line bg-white">
+        <nav className="container-site flex h-16 items-center justify-between gap-4 lg:h-[72px] lg:gap-6" aria-label="Main">
           <Link to="/home" aria-label="Prototype Design home" className="min-w-0 shrink">
             <Logo />
           </Link>
@@ -69,7 +50,7 @@ export default function Navbar() {
             </Button>
             <button
               type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-white text-navy transition-colors hover:border-primary-200 hover:text-primary lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[4px] border border-line bg-white text-navy transition-colors hover:border-primary hover:text-primary lg:hidden"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -80,11 +61,11 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile menu: slides and fades over the page; `invisible` keeps closed links out of the tab order */}
+        {/* Mobile menu: fades in over the page; `invisible` keeps closed links out of the tab order */}
         <div
           id="mobile-menu"
-          className={`absolute inset-x-0 top-full border-b border-line bg-white shadow-lg transition-[opacity,transform,visibility] duration-300 ease-out lg:hidden ${
-            open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-3 opacity-0'
+          className={`absolute inset-x-0 top-full border-b border-line bg-white transition-[opacity,visibility] duration-200 lg:hidden ${
+            open ? 'visible opacity-100' : 'invisible opacity-0'
           }`}
         >
           <ul className="container-site flex flex-col gap-1 py-4">
@@ -93,8 +74,8 @@ export default function Navbar() {
                 <NavLink
                   to={l.to}
                   className={({ isActive }) =>
-                    `flex min-h-12 items-center rounded-xl px-4 py-3 text-[16px] font-medium transition-colors ${
-                      isActive ? 'bg-primary-50 text-primary' : 'text-navy hover:bg-sky-soft'
+                    `flex min-h-12 items-center rounded-[4px] border-l-2 px-4 py-3 text-[16px] font-medium transition-colors ${
+                      isActive ? 'border-primary bg-grey text-primary' : 'border-transparent text-ink hover:bg-grey'
                     }`
                   }
                 >
