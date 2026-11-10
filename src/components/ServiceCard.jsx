@@ -1,69 +1,188 @@
-import { useRef, useState } from 'react'
-import Card from './Card.jsx'
-import IconCircle from './IconCircle.jsx'
-import ServiceModal from './ServiceModal.jsx'
 
-const VISIBLE = 6
-// Fixed-height, single-line tags: long names truncate (full text in `title` and in the popup).
-const chip =
-  'block h-[30px] truncate rounded-[4px] border border-line bg-grey px-3 text-[13px] leading-[28px] text-ink'
-const moreTag =
-  'relative inline-flex h-6 cursor-pointer items-center rounded-[4px] after:absolute after:inset-x-0 after:-inset-y-2.5 border border-primary bg-transparent px-3 text-[13px] font-semibold text-primary transition-colors hover:bg-primary hover:text-white'
+import { useEffect, useRef, useState } from 'react';
+import { Check } from 'lucide-react';
 
-/**
- * Every card is an identical rectangle with fixed zones, so content never changes its size:
- * header 56px (icon + 2-line title) · 8px · description 48px (2 lines) · 16px ·
- * products (fills the rest; 2×3 grid of 30px tags) · footer 32px with divider ("+N more").
- * Height: 380px under 768px, 360px from 768px. Radius: --service-card-radius (index.css).
- */
-export default function ServiceCard({ icon, title, description, products = [] }) {
-  const [open, setOpen] = useState(false)
-  const moreRef = useRef(null)
-  const hidden = products.length - VISIBLE
+export default function ServiceCard({
+  image,
+  title,
+  description,
+  products = [],
+  number = '01',
+  reverse = false,
+}) {
+  const cardRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Scroll reveal animation
+  useEffect(() => {
+    const element = cardRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(element);
+        }
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <Card
-      as="article"
-      hover
-      className="flex h-[380px] flex-col overflow-hidden rounded-[var(--service-card-radius)]! p-6 md:h-[360px]"
+    <article
+      ref={cardRef}
+      className={`
+        relative flex w-full overflow-hidden
+        flex-col md:flex-row
+        ${reverse ? 'md:flex-row-reverse md:ml-auto' : 'md:mr-auto'}
+
+        md:w-[91%]
+        min-h-0 md:min-h-[235px]
+
+        rounded-xl
+        border border-blue-100
+        bg-white
+        shadow-[0_5px_20px_rgba(15,45,92,0.09)]
+
+        transition-all duration-700 ease-out
+
+        ${isVisible
+          ? 'translate-x-0 opacity-100'
+          : reverse
+            ? 'translate-x-12 opacity-0'
+            : '-translate-x-12 opacity-0'
+        }
+
+        hover:shadow-[0_10px_28px_rgba(15,45,92,0.13)]
+
+        motion-reduce:translate-x-0
+        motion-reduce:opacity-100
+        motion-reduce:transition-none
+      `}
     >
-      <div className="flex h-14 shrink-0 items-center gap-3">
-        <IconCircle icon={icon} size="sm" className="[&>svg]:h-7! [&>svg]:w-7!" />
-        <h3 className="line-clamp-2 min-w-0 text-[17px] leading-snug font-bold" title={title}>
+
+      {/* IMAGE SECTION */}
+      <div
+        className={`
+          relative h-[190px] w-full
+          shrink-0 overflow-hidden
+          bg-slate-100
+          md:h-auto md:w-[42%]
+          md:min-h-[235px]
+        `}
+      >
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="
+            absolute inset-0
+            h-full w-full
+            object-cover object-center
+          "
+        />
+
+        {/* BLUE SEPARATOR */}
+        <div
+          className={`
+            absolute inset-y-0 hidden
+            w-[7px] bg-blue-600 md:block
+            ${reverse ? 'left-0' : 'right-0'}
+          `}
+        />
+      </div>
+
+      {/* CONTENT SECTION */}
+      <div
+        className="
+          flex min-w-0 flex-1
+          flex-col justify-center
+          px-4 py-4
+          sm:px-5
+          md:px-6 md:py-5
+          lg:px-7
+        "
+      >
+
+        {/* SERVICE NUMBER */}
+        <div className="mb-2">
+          <span
+            className="
+              inline-flex rounded-md
+              bg-[#EAF2FF]
+              px-3 py-1.5
+              text-xs font-bold
+              tracking-wide text-blue-700
+            "
+          >
+            SERVICE / {number}
+          </span>
+        </div>
+
+        {/* TITLE */}
+        <h3
+          className="
+            text-lg font-extrabold
+            leading-snug tracking-tight
+            text-[#102D5C]
+            sm:text-xl
+          "
+        >
           {title}
         </h3>
-      </div>
 
-      <p className="mt-2 line-clamp-2 h-12 shrink-0 text-[15px] leading-6" title={description}>
-        {description}
-      </p>
+        {/* DESCRIPTION */}
+        <p
+          className="
+            mt-1.5
+            text-sm leading-6
+            text-slate-600
+            sm:text-base
+          "
+        >
+          {description}
+        </p>
 
-      <ul className="mt-4 grid min-h-0 flex-1 auto-rows-[30px] grid-cols-2 content-start gap-2 overflow-hidden">
-        {products.slice(0, VISIBLE).map((p) => (
-          <li key={p} className={chip} title={p}>
-            {p}
-          </li>
-        ))}
-      </ul>
+        {/* PRODUCT TAGS */}
+        {products.length > 0 && (
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {products.slice(0, 6).map((product) => (
+              <li
+                key={product}
+                className="
+                  inline-flex items-center gap-1.5
+                  rounded-md
+                  border border-[#D8E5F7]
+                  bg-[#F8FBFF]
+                  px-2.5 py-1.5
+                  text-xs font-medium
+                  text-[#102D5C]
+                  sm:text-sm
+                  transition-colors duration-200
+                  hover:border-blue-400
+                  hover:bg-blue-50
+                "
+              >
+                <Check
+                  size={14}
+                  strokeWidth={2.5}
+                  className="shrink-0 text-blue-600"
+                />
 
-      <div className="mt-auto h-8 shrink-0 border-t border-line pt-[7px]">
-        {hidden > 0 && (
-          <button
-            ref={moreRef}
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-haspopup="dialog"
-            aria-label={`Show all ${products.length} products for ${title}`}
-            className={moreTag}
-          >
-            +{hidden} more
-          </button>
+                <span>{product}</span>
+              </li>
+            ))}
+          </ul>
         )}
-      </div>
 
-      {hidden > 0 && (
-        <ServiceModal open={open} title={title} products={products} onClose={() => setOpen(false)} returnFocusRef={moreRef} />
-      )}
-    </Card>
-  )
+      </div>
+    </article>
+  );
 }

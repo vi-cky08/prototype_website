@@ -1,163 +1,680 @@
-import { Eye, ExternalLink, Quote, Target } from 'lucide-react'
-import SectionHeading, { Eyebrow, headingSizes } from '../components/SectionHeading.jsx'
-import CheckList from '../components/CheckList.jsx'
-import Button from '../components/Button.jsx'
-import Card from '../components/Card.jsx'
-import CompanyIntro from '../components/CompanyIntro.jsx'
-import { Reveal, Stagger, StaggerItem } from '../components/Motion.jsx'
-import { charteredEngineer as ce, director, visionMission } from '../data/team.js'
 
-const visionIcons = [Eye, Target]
+import {
+  Eye,
+  Target,
+  ExternalLink,
+  Check,
+  Award,
+  ArrowRight,
+  Mail,
+  MessageCircle,
+} from 'lucide-react';
 
+import { Link } from 'react-router-dom';
+
+import SectionHeading, {
+  Eyebrow,
+  headingSizes,
+} from '../components/SectionHeading.jsx';
+
+import CheckList from '../components/CheckList.jsx';
+import Button from '../components/Button.jsx';
+import Card from '../components/Card.jsx';
+import CompanyIntro from '../components/CompanyIntro.jsx';
+
+import {
+  Reveal,
+  Stagger,
+  StaggerItem,
+} from '../components/Motion.jsx';
+
+import {
+  charteredEngineer as ce,
+  director,
+  visionMission,
+} from '../data/team.js';
+
+
+const visionIcons = [Eye, Target];
+
+
+// EXPERIENCE AND SPECIALIZATION COMPONENT
 function SubList({ title, items }) {
   return (
-    <div>
-      <h4 className="text-[15px] font-bold">{title}</h4>
-      <CheckList items={items} className="mt-3 space-y-2!" itemClassName="text-[15px]! lg:text-[14px]!" />
+    <div className="
+      h-full rounded-xl border border-blue-100
+      bg-gradient-to-br from-white to-blue-50/70
+      p-5 shadow-sm transition-all duration-300
+      hover:-translate-y-1 hover:border-blue-300
+      hover:shadow-lg
+    ">
+
+      <h4 className="
+        mb-4 text-[15px] font-extrabold
+        text-[#102D5C]
+      ">
+        {title}
+      </h4>
+
+      <ul className="space-y-3">
+
+        {items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-2.5 text-sm leading-6 text-slate-700"
+          >
+
+            <Check
+              size={17}
+              strokeWidth={2.8}
+              className="mt-1 shrink-0 text-blue-600"
+            />
+
+            {item}
+
+          </li>
+        ))}
+
+      </ul>
+
     </div>
-  )
+  );
 }
+
 
 export default function AboutUs() {
   return (
-    <>
-      {/* A. The Company */}
+    <main className="overflow-hidden bg-white">
+
+      {/* A. COMPANY INTRODUCTION */}
       <CompanyIntro />
 
-      {/* B. Vision & Mission */}
-      <section className="section-y bg-white">
-        <div className="container-site">
-          <Reveal className="on-dark relative overflow-hidden rounded-3xl shadow-lg">
+
+      {/* B. VISION AND MISSION */}
+      <section className="bg-white px-5 py-8 sm:px-8 lg:px-12">
+
+        <div className="mx-auto max-w-[1400px]">
+
+          <Reveal className="
+            relative isolate overflow-hidden
+            rounded-2xl shadow-xl
+          ">
+
             <img
               src={visionMission.image}
               alt=""
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
+              className="
+                absolute inset-0 -z-20
+                h-full w-full object-cover
+              "
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-800/80 to-navy-800/30" />
-            <Stagger className="relative grid gap-5 px-5 py-8 sm:px-10 sm:py-12 md:grid-cols-2 md:gap-6 lg:py-16 lg:pr-48">
-              {[visionMission.vision, visionMission.mission].map((block, i) => {
-                const Icon = visionIcons[i]
-                return (
-                  <StaggerItem
-                    key={block.title}
-                    className="rounded-2xl border border-white/15 bg-white/[0.07] p-6 shadow-[inset_0_1px_0_rgb(255_255_255/0.08)] sm:p-8 md:backdrop-blur-md"
-                  >
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-accent">
-                      <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
-                    </span>
-                    <h2 className={`${headingSizes.h2} mt-5 text-white`}>{block.title}</h2>
-                    <p className="mt-3 text-[15px] leading-relaxed text-white/85 sm:text-[16px]">{block.text}</p>
-                  </StaggerItem>
-                )
-              })}
+
+            <div className="
+              absolute inset-0 -z-10
+              bg-gradient-to-r
+              from-[#092653]/95
+              via-[#123B70]/85
+              to-[#102D5C]/55
+            " />
+
+            <Stagger className="
+              grid gap-5 px-5 py-7
+              sm:px-10 sm:py-9
+              md:grid-cols-2 lg:px-16
+            ">
+
+              {[visionMission.vision, visionMission.mission].map(
+                (block, index) => {
+
+                  const Icon = visionIcons[index];
+
+                  return (
+                    <StaggerItem
+                      key={block.title}
+                      className="
+                        group flex gap-5 rounded-xl
+                        border border-white/20
+                        bg-white/10 p-6
+                        shadow-lg backdrop-blur-md
+                        transition-all duration-300
+                        hover:-translate-y-1
+                        hover:bg-white/15
+                      "
+                    >
+
+                      <span className="
+                        flex h-12 w-12 shrink-0
+                        items-center justify-center
+                        rounded-xl border border-white/20
+                        bg-white/10 text-blue-200
+                        transition group-hover:scale-110
+                      ">
+
+                        <Icon size={26} />
+
+                      </span>
+
+                      <div>
+
+                        <h2 className="text-2xl font-extrabold text-white">
+                          {block.title}
+                        </h2>
+
+                        <p className="
+                          mt-3 text-sm leading-6
+                          text-white/85 sm:text-[15px]
+                        ">
+                          {block.text}
+                        </p>
+
+                      </div>
+
+                    </StaggerItem>
+                  );
+                }
+              )}
+
             </Stagger>
+
           </Reveal>
+
         </div>
+
       </section>
 
-      {/* C. Meet The Technical Director */}
-      <section className="section-y relative overflow-hidden bg-sky-soft">
-        <div className="container-site relative">
-          <Reveal>
-            <Card className="p-5 sm:p-9 lg:p-12">
-              <Eyebrow className="mb-4">{director.eyebrow}</Eyebrow>
-              <h2 className={headingSizes.h2}>{director.title}</h2>
-              <p className="mt-2 text-[15px]">{director.subtitle}</p>
 
-              <div className="mt-10 grid gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:gap-10 lg:gap-14">
-                {/* Gradient ring around the portrait */}
-                <div className="mx-auto w-full max-w-[320px] self-start rounded-[22px] bg-gradient-to-br from-primary-500 via-accent to-primary-700 p-[3px] shadow-[var(--shadow-glow)] md:max-w-none">
+      {/* C. TECHNICAL DIRECTOR */}
+      <section className="
+        bg-[#F4F8FE] px-5 py-10
+        sm:px-8 lg:px-12 lg:py-14
+      ">
+
+        <div className="mx-auto max-w-[1400px]">
+
+          <Reveal>
+
+            <div className="mb-7">
+
+              <Eyebrow className="mb-2">
+                {director.eyebrow}
+              </Eyebrow>
+
+              <h2 className={`${headingSizes.h2} text-[#102D5C]`}>
+                {director.title}
+              </h2>
+
+              <p className="mt-2 text-sm text-slate-600 sm:text-base">
+                {director.subtitle}
+              </p>
+
+            </div>
+
+          </Reveal>
+
+
+          <Reveal>
+
+            <div className="
+              relative overflow-hidden
+              rounded-2xl border border-blue-100
+              bg-white p-5 shadow-lg
+              sm:p-8 lg:p-9
+            ">
+
+              {/* Decorative background */}
+              <div className="
+                pointer-events-none absolute
+                -right-24 -top-24 h-72 w-72
+                rounded-full bg-blue-100/60 blur-3xl
+              " />
+
+
+              <div className="
+                relative grid items-start gap-7
+                lg:grid-cols-[320px_minmax(0,1fr)]
+                xl:grid-cols-[360px_minmax(0,1fr)]
+                lg:gap-8
+              ">
+
+                {/* DIRECTOR IMAGE */}
+                <div className="
+                  mx-auto w-full max-w-[250px]
+                  h-fit self-start
+                  overflow-hidden
+                  rounded-2xl bg-gradient-to-br
+                  from-blue-500 to-blue-900
+                  p-[3px] shadow-xl
+                  lg:max-w-none
+                ">
+
                   <img
                     src={director.image}
                     alt={director.imageAlt}
                     width="400"
                     height="500"
                     loading="lazy"
-                    className="aspect-[4/5] w-full rounded-[19px] bg-white object-cover"
+                    className="
+                      block aspect-[4/5] w-full
+                      rounded-[13px] bg-white
+                      object-cover object-center
+                    "
                   />
+
                 </div>
 
+
+                {/* DIRECTOR DETAILS */}
                 <div className="min-w-0">
-                  <h3 className="text-[26px] font-extrabold tracking-tight text-primary sm:text-[32px]">{director.name}</h3>
-                  <p className="mt-1 text-[16px] font-medium text-navy/80">{director.role}</p>
 
-                  <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                    {director.credentials.map(({ icon: Icon, text }) => (
-                      <li
-                        key={text}
-                        className="flex items-center gap-3 rounded-xl border border-line bg-white px-3 py-2.5 text-[14px] text-navy/85 shadow-sm transition-colors duration-200 hover:border-primary-200"
-                      >
-                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary">
-                          <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
-                        </span>
-                        {text}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* NAME AND DESIGNATION */}
+                  <div className="flex flex-wrap items-center gap-3">
 
-                  <div className="mt-8 grid gap-7 sm:grid-cols-2">
-                    <SubList title="Professional Experience" items={director.experience} />
-                    <SubList title="Specializations" items={director.specializations} />
+                    <h3 className="
+                      text-3xl font-extrabold
+                      tracking-tight text-blue-700
+                      sm:text-4xl
+                    ">
+                      {director.name}
+                    </h3>
+
+                    <span className="
+                      rounded-full border border-blue-200
+                      bg-blue-50 px-3 py-1
+                      text-[10px] font-bold
+                      uppercase tracking-wider
+                      text-blue-700
+                    ">
+                      Technical Leadership
+                    </span>
+
                   </div>
+
+                  <p className="
+                    mt-2 text-sm font-medium
+                    text-slate-600 sm:text-base
+                  ">
+                    {director.role}
+                  </p>
+
+
+                  {/* QUALIFICATIONS */}
+                  <div className="mt-6">
+
+                    <p className="
+                      mb-3 text-xs font-bold
+                      uppercase tracking-[0.15em]
+                      text-slate-500
+                    ">
+                      Education & Professional Qualifications
+                    </p>
+
+                    <ul className="grid gap-3 sm:grid-cols-2">
+
+                      {director.credentials.map(({ icon: Icon, text }) => (
+
+                        <li
+                          key={text}
+                          className="
+                            group flex min-h-[68px]
+                            items-center gap-3
+                            rounded-xl border border-blue-100
+                            bg-gradient-to-r from-blue-50/80
+                            to-white px-4 py-3
+                            transition-all duration-300
+                            hover:-translate-y-1
+                            hover:border-blue-300
+                            hover:shadow-md
+                          "
+                        >
+
+                          <span className="
+                            flex h-10 w-10 shrink-0
+                            items-center justify-center
+                            rounded-lg bg-blue-100
+                            text-blue-700 transition
+                            group-hover:bg-blue-700
+                            group-hover:text-white
+                          ">
+
+                            <Icon size={19} />
+
+                          </span>
+
+                          <span className="
+                            text-sm font-semibold
+                            leading-5 text-[#19365F]
+                          ">
+                            {text}
+                          </span>
+
+                        </li>
+
+                      ))}
+
+                    </ul>
+
+                  </div>
+
+
+                  {/* EXPERIENCE AND SPECIALIZATIONS */}
+                  <div className="
+                    mt-6 grid gap-4
+                    sm:grid-cols-2
+                  ">
+
+                    <SubList
+                      title="Professional Experience"
+                      items={director.experience}
+                    />
+
+                    <SubList
+                      title="Specializations"
+                      items={director.specializations}
+                    />
+
+                  </div>
+
                 </div>
+
               </div>
 
-              <blockquote className="relative mt-10 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 to-sky px-5 py-8 sm:px-14 sm:py-10">
-                <Quote
-                  className="absolute -top-2 left-2 h-20 w-20 rotate-180 fill-primary-100 text-primary-100 sm:-top-3 sm:left-4 sm:h-28 sm:w-28"
-                  aria-hidden="true"
-                />
-                <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary-500 to-accent" />
-                <p className="relative text-[17px] leading-relaxed font-medium text-navy/85 sm:pl-8 sm:text-[20px]">
-                  {director.quote[0]}
-                  <br />
-                  {director.quote[1]}
-                </p>
-              </blockquote>
-            </Card>
-          </Reveal>
-        </div>
-      </section>
 
-      {/* D. What is a Chartered Engineer? */}
-      <section className="section-y bg-white">
-        <div className="container-site">
-          <Reveal>
-            <SectionHeading eyebrow={ce.eyebrow} title={ce.title} subtitle={ce.description} />
-          </Reveal>
-          <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-            <Reveal className="flex flex-col">
-              <Card className="flex-1 p-5 sm:p-8">
-                <h3 className="text-[18px] font-bold text-primary-700">{ce.benefitsTitle}</h3>
-                <CheckList items={ce.benefits} className="mt-5" />
-              </Card>
-              <div className="mt-6">
-                <Button
+              {/* ENGINEERING QUOTE */}
+              <blockquote className="
+                relative mt-8 flex flex-col
+                gap-4 overflow-hidden
+                rounded-xl border border-blue-100
+                bg-gradient-to-r from-blue-50
+                to-[#DFECFF] p-5
+                sm:flex-row sm:items-center
+                sm:justify-between sm:px-7
+              ">
+
+                <div className="flex items-start gap-3">
+
+                  <p className="
+                    text-sm font-semibold
+                    leading-6 text-[#102D5C]
+                    sm:text-base
+                  ">
+                    {director.quote[0]}
+                    <br />
+                    {director.quote[1]}
+                  </p>
+
+                </div>
+
+                <a
                   href={ce.ctaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={ce.ctaAriaLabel}
-                  className="w-full text-left sm:w-auto"
+                  className="
+                    inline-flex shrink-0
+                    items-center justify-center
+                    gap-2 rounded-lg bg-blue-700
+                    px-5 py-3 text-sm font-bold
+                    text-white transition
+                    hover:bg-blue-800 hover:shadow-lg
+                  "
                 >
-                  {ce.cta}
-                  <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
-                </Button>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1} className="flex items-center px-2 sm:px-6">
-              <img
-                src={ce.image}
-                alt={ce.imageAlt}
-                width="560"
-                height="340"
-                loading="lazy"
-                className="aspect-[28/17] w-full rounded-2xl object-cover shadow-[0_30px_60px_-28px_rgb(11_42_91/0.55)] ring-1 ring-line transition-transform duration-500 ease-out sm:-rotate-2 sm:hover:rotate-0"
-              />
-            </Reveal>
-          </div>
+                  Learn More
+                  <ExternalLink size={15} />
+
+                </a>
+
+              </blockquote>
+
+            </div>
+
+          </Reveal>
+
         </div>
+
       </section>
-    </>
-  )
+
+
+      {/* D. CHARTERED ENGINEER */}
+      <section className="
+        bg-white px-5 py-12
+        sm:px-8 lg:px-12 lg:py-16
+      ">
+
+        <div className="mx-auto max-w-[1400px]">
+
+          <Reveal>
+
+            <SectionHeading
+              eyebrow={ce.eyebrow}
+              title={ce.title}
+              subtitle={ce.description}
+            />
+
+          </Reveal>
+
+
+          <div className="
+            mt-8 grid items-center
+            gap-8 lg:grid-cols-2 lg:gap-12
+          ">
+
+            {/* BENEFITS */}
+            <Reveal>
+
+              <Card className="
+                h-full border border-blue-100
+                p-6 shadow-md transition
+                hover:shadow-lg sm:p-8
+              ">
+
+                <div className="flex items-center gap-3">
+
+                  <span className="
+                    flex h-11 w-11 items-center
+                    justify-center rounded-xl
+                    bg-blue-100 text-blue-700
+                  ">
+                    <Award size={23} />
+                  </span>
+
+                  <h3 className="
+                    text-lg font-extrabold
+                    text-[#102D5C]
+                  ">
+                    {ce.benefitsTitle}
+                  </h3>
+
+                </div>
+
+                <CheckList
+                  items={ce.benefits}
+                  className="mt-6 space-y-3"
+                />
+
+                <div className="mt-7">
+
+                  <Button
+                    href={ce.ctaHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={ce.ctaAriaLabel}
+                    className="w-full sm:w-auto"
+                  >
+                    {ce.cta}
+                    <ExternalLink size={16} />
+
+                  </Button>
+
+                </div>
+
+              </Card>
+
+            </Reveal>
+
+
+            {/* CERTIFICATE IMAGE */}
+            <Reveal delay={0.1}>
+
+              <div className="
+                overflow-hidden rounded-2xl
+                border border-blue-100
+                bg-white p-3 shadow-xl
+                transition duration-500
+                hover:-translate-y-1 hover:shadow-2xl
+              ">
+
+                <img
+                  src={ce.image}
+                  alt={ce.imageAlt}
+                  width="560"
+                  height="340"
+                  loading="lazy"
+                  className="
+                    aspect-[28/17] w-full
+                    rounded-xl object-cover
+                  "
+                />
+
+              </div>
+
+            </Reveal>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* E. CONTACT CTA - HIGHLIGHTED */}
+      <section className="
+        relative isolate overflow-hidden
+        bg-[#092653] px-5 py-14
+        sm:px-8 lg:px-12 lg:py-16
+      ">
+
+        {/* Background decoration */}
+        <div className="
+          pointer-events-none absolute
+          -right-24 -top-32 -z-10
+          h-96 w-96 rounded-full
+          border-[50px] border-white/5
+        " />
+
+        <div className="
+          pointer-events-none absolute
+          -bottom-32 -left-20 -z-10
+          h-80 w-80 rounded-full
+          bg-blue-500/20 blur-3xl
+        " />
+
+
+        <Reveal>
+
+          <div className="
+            mx-auto flex max-w-[1300px]
+            flex-col gap-8
+            lg:flex-row lg:items-center
+            lg:justify-between
+          ">
+
+            {/* CONTACT CONTENT */}
+            <div className="max-w-2xl">
+
+              <p className="
+                flex items-center gap-2
+                text-xs font-bold uppercase
+                tracking-[0.2em] text-blue-300
+              ">
+
+                <span className="h-[2px] w-8 bg-blue-400" />
+
+                Let's Work Together
+
+              </p>
+
+              <h2 className="
+                mt-4 text-3xl font-extrabold
+                tracking-tight text-white
+                sm:text-4xl lg:text-5xl
+              ">
+                Have an Engineering Project in Mind?
+              </h2>
+
+              <p className="
+                mt-4 max-w-xl text-sm
+                leading-7 text-blue-100/80
+                sm:text-base
+              ">
+                Discuss your product design,
+                manufacturing, tooling or prototype
+                requirements with our engineering team.
+                Let's turn your ideas into practical solutions.
+              </p>
+
+            </div>
+
+
+            {/* CONTACT ACTIONS */}
+            <div className="
+              flex shrink-0 flex-col gap-3
+              sm:flex-row lg:flex-col
+              xl:flex-row
+            ">
+
+              <Link
+                to="/contact"
+                className="
+                  group inline-flex items-center
+                  justify-center gap-3 rounded-xl
+                  bg-blue-600 px-7 py-4
+                  text-sm font-bold text-white
+                  shadow-lg shadow-blue-950/30
+                  transition duration-300
+                  hover:-translate-y-1
+                  hover:bg-blue-500 hover:shadow-xl
+                "
+              >
+
+                <MessageCircle size={19} />
+
+                Contact Our Team
+
+                <ArrowRight
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+
+              </Link>
+
+
+              <Link
+                to="/contact"
+                className="
+                  inline-flex items-center
+                  justify-center gap-2 rounded-xl
+                  border border-white/30
+                  bg-white/10 px-7 py-4
+                  text-sm font-bold text-white
+                  backdrop-blur-sm transition
+                  hover:bg-white hover:text-[#102D5C]
+                "
+              >
+
+                <Mail size={18} />
+
+                Start Your Project
+
+              </Link>
+
+            </div>
+
+          </div>
+
+        </Reveal>
+
+      </section>
+
+    </main>
+  );
 }

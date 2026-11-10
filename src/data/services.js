@@ -1,31 +1,28 @@
-import {
-  Car,
-  CircuitBoard,
-  Cog,
-  Flame,
-  Package,
-  PenTool,
-  Printer,
-  Ruler,
-  ShieldCheck,
-  UtensilsCrossed,
-  Wrench,
-} from 'lucide-react'
+
+import enclosures from '../assets/Enclosures.png';
+import jigsFixture from '../assets/JigsFixture.png';
+import precision from '../assets/Precision.png';
+import guards from '../assets/Guards.png';
+import inspectionGauges from '../assets/Inspection-Gauges.png';
+import packingTooling from '../assets/Packing-Tooling.png';
+import modern from '../assets/modern.png';
 
 export const servicesIntro = {
   eyebrow: 'What We Build',
   title: 'Our Services',
-  subtitle: 'Custom engineered products and tooling, designed for manufacturing and built to perform.',
-}
+  subtitle:
+    'Custom engineered products and tooling, designed for manufacturing and built to perform.',
+};
 
-// Add, remove or reorder services freely; the grid adapts to any number of cards.
-// A service with an empty `products` array shows only its title and description.
-// Cards show the first 6 products and a "+N more" toggle for the rest.
+// Add or remove services freely.
+// image displays the relevant engineering photograph.
+// products displays the service tags.
 export const services = [
   {
-    icon: CircuitBoard,
+    image: enclosures,
     title: 'Industrial Electrical/Electronics Enclosures',
-    description: 'Custom enclosures and housings for industrial controls and devices.',
+    description:
+      'Custom enclosures and housings for industrial controls and devices.',
     products: [
       'PLC/controller enclosures',
       'Sensor housings',
@@ -37,10 +34,12 @@ export const services = [
       'Cable-management boxes',
     ],
   },
+
   {
-    icon: Wrench,
+    image: jigsFixture,
     title: 'Jigs and Fixtures',
-    description: 'Precision jigs and fixtures for assembly, machining and inspection.',
+    description:
+      'Precision jigs and fixtures for assembly, machining and inspection.',
     products: [
       'Assembly jigs',
       'Drilling jigs',
@@ -54,10 +53,12 @@ export const services = [
       'Inspection gauges',
     ],
   },
+
   {
-    icon: Car,
+    image: precision,
     title: 'Automotive Prototype Body Parts',
-    description: 'Prototype interior and body components for automotive development.',
+    description:
+      'Prototype interior and body components for automotive development.',
     products: [
       'Dashboard prototypes',
       'Console prototypes',
@@ -71,10 +72,12 @@ export const services = [
       'Interior trim',
     ],
   },
+
   {
-    icon: ShieldCheck,
+    image: guards,
     title: 'Machine Guards and Covers',
-    description: 'Protective guards and covers for safe, reliable machine operation.',
+    description:
+      'Protective guards and covers for safe, reliable machine operation.',
     products: [
       'Motor covers',
       'Belt guards',
@@ -88,29 +91,41 @@ export const services = [
       'Operator-interface housings',
     ],
   },
+
   {
-    icon: Ruler,
+    image: inspectionGauges,
     title: 'Inspection Gauges',
-    description: 'Gauges and checking fixtures for dimensional verification.',
+    description:
+      'Gauges and checking fixtures for dimensional verification.',
     products: [
       'Go/no-go gauges',
       'Profile gauges',
       'Hole-position gauges',
       'Assembly verification gauges',
       'Component checking fixtures',
-      'Dimensional inspection fixture',
+      'Dimensional inspection fixtures',
     ],
   },
+
   {
-    icon: Package,
+    image: packingTooling,
     title: 'Packaging and Material-Handling Tooling',
-    description: 'Custom tooling for packaging lines and material handling.',
-    products: [],
+    description:
+      'Custom tooling for packaging lines and material handling.',
+    products: [
+      'Packaging fixtures',
+      'Material-handling trays',
+      'Product positioning tools',
+      'Conveyor components',
+      'Custom packaging tools',
+    ],
   },
+
   {
-    icon: Cog,
+    image: precision,
     title: 'CNC/Machining Soft Jaws',
-    description: 'Workholding solutions for accurate, repeatable machining.',
+    description:
+      'Workholding solutions for accurate, repeatable machining.',
     products: [
       'Soft jaws',
       'Custom workholding fixtures',
@@ -120,22 +135,38 @@ export const services = [
       'Inspection holders',
     ],
   },
+
   {
-    icon: Flame,
+    image: guards,
     title: 'Welding Fixtures',
-    description: 'Fixtures that hold parts in position for consistent, accurate welding.',
-    products: [],
+    description:
+      'Fixtures that hold parts in position for consistent, accurate welding.',
+    products: [
+      'Welding positioning fixtures',
+      'Assembly fixtures',
+      'Clamping fixtures',
+      'Custom welding tools',
+    ],
   },
+
   {
-    icon: Printer,
+    image: modern,
     title: '3D-Printed Replacement Parts',
-    description: 'Fast, custom replacement parts produced by 3D printing.',
-    products: [],
+    description:
+      'Fast, custom replacement parts produced by 3D printing.',
+    products: [
+      'Custom plastic parts',
+      'Prototype components',
+      'Replacement brackets',
+      'Machine components',
+    ],
   },
+
   {
-    icon: UtensilsCrossed,
+    image: packingTooling,
     title: 'Food-Processing Machine Components',
-    description: 'Custom components for food-processing and packaging machines.',
+    description:
+      'Custom components for food-processing and packaging machines.',
     products: [
       'Product guides',
       'Funnels',
@@ -145,14 +176,14 @@ export const services = [
       'Conveyor guides',
       'Change parts',
       'Cleaning tools',
-      'Alignment fixtures',
-      'Packaging fixtures',
     ],
   },
+
   {
-    icon: PenTool,
+    image: modern,
     title: 'Industrial Product Design & Engineering',
-    description: 'Concepts developed into detailed, manufacturing-ready engineering designs.',
+    description:
+      'Concepts developed into detailed, manufacturing-ready engineering designs.',
     products: [
       'Concept development & 3D CAD',
       'Electrical/electronics enclosures',
@@ -163,10 +194,12 @@ export const services = [
       'Prototype development',
     ],
   },
+
   {
-    icon: Cog,
+    image: precision,
     title: 'Special Purpose Machine Design & Development',
-    description: 'Custom machines designed around your process and production goals.',
+    description:
+      'Custom machines designed around your process and production goals.',
     products: [
       'Machine concept development',
       '3D CAD & assembly design',
@@ -177,10 +210,10 @@ export const services = [
       'Prototype & manufacturing coordination',
     ],
   },
-]
+];
 
 export const servicesCta = {
   text: 'Need something custom? Tell us what you need.',
   label: 'Start Your Project',
   to: '/contact',
-}
+};

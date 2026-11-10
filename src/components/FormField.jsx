@@ -1,93 +1,118 @@
-import { ChevronDown, CircleAlert } from 'lucide-react'
 
-const inputCls = (err) =>
-  `block w-full rounded-[4px] border bg-white px-3 text-base text-ink placeholder:text-[#8a929e] transition-colors focus:ring-1 focus:outline-none md:text-[14px] ${
-    err ? 'border-danger focus:border-danger focus:ring-danger' : 'border-line hover:border-[#b9bfc8] focus:border-primary focus:ring-primary'
-  }`
+export default function FormField({
+  name,
+  field,
+  value,
+  error,
+  onChange,
+  onBlur,
+  labelWidth,
+}) {
+  const commonClasses = `
+    w-full min-h-12 rounded-[4px] border bg-white
+    px-4 py-3 text-base text-navy outline-none
+    transition-colors
+    placeholder:text-muted/70
+    focus:border-primary focus:ring-1 focus:ring-primary
+    disabled:cursor-not-allowed disabled:bg-grey
+  `;
 
-const heightCls = 'min-h-11 md:min-h-10'
+  const borderClass = error
+    ? 'border-danger'
+    : 'border-line';
 
-/**
- * Label + control + error line for one entry in src/data/contactFormFields.js.
- * Labels sit above the control under 768px and to its left from 768px up;
- * `labelWidth` sets that left column (a CSS length, or "auto" for paired fields).
- */
-export default function FormField({ name, field, value, error, onChange, onBlur, labelWidth = '9.5rem' }) {
-  const { label, labelNote, required, type = 'text', options, counter, format, rows, ...attrs } = field
-  const errorId = `${name}-error`
-  const counterId = `${name}-count`
+  const handleChange = (event) => {
+    const nextValue = field.format
+      ? field.format(event.target.value)
+      : event.target.value;
 
-  const handleChange = (e) => onChange(name, format ? format(e.target.value) : e.target.value)
+    onChange(name, nextValue);
+  };
 
-  const common = {
+  const inputProps = {
     id: name,
     name,
-    value,
+    value: value ?? '',
     onChange: handleChange,
     onBlur: () => onBlur(name),
-    required,
-    'aria-required': required || undefined,
+    required: Boolean(field.required),
+    autoComplete: field.autoComplete || 'off',
+    maxLength: field.maxLength,
+    placeholder: field.placeholder || '',
     'aria-invalid': Boolean(error),
-    'aria-describedby': [error && errorId, counter && counterId].filter(Boolean).join(' ') || undefined,
-    autoComplete: attrs.autoComplete,
-    maxLength: attrs.maxLength,
-    placeholder: type === 'select' ? undefined : attrs.placeholder,
-  }
-
-  let control
-  if (type === 'textarea') {
-    control = <textarea rows={rows} {...common} className={`${inputCls(error)} resize-y py-2.5 leading-relaxed`} />
-  } else if (type === 'select') {
-    control = (
-      <div className="relative">
-        <select
-          {...common}
-          className={`${inputCls(error)} ${heightCls} appearance-none pr-9 ${value ? '' : 'text-[#8a929e]'}`}
-        >
-          <option value="" disabled>
-            {attrs.placeholder}
-          </option>
-          {options.map((o) => (
-            <option key={o} value={o} className="text-navy">
-              {o}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-ink" aria-hidden="true" />
-      </div>
-    )
-  } else {
-    control = <input type={type} inputMode={attrs.inputMode} {...common} className={`${inputCls(error)} ${heightCls}`} />
-  }
+    'aria-describedby': error ? `${name}-error` : undefined,
+    className: `${commonClasses} ${borderClass}`,
+  };
 
   return (
     <div
-      className="min-w-0 md:grid md:grid-cols-[var(--label-w)_minmax(0,1fr)] md:items-start md:gap-x-3"
-      style={{ '--label-w': labelWidth }}
+      className="min-w-0"
+      style={
+        labelWidth
+          ? { '--field-label-width': labelWidth }
+          : undefined
+      }
     >
-      <label htmlFor={name} className="mb-1.5 block text-[14px] leading-snug font-semibold text-navy md:mb-0 md:pt-2.5 md:text-[13px]">
-        {label}
-        {required && <span className="text-danger"> *</span>}
-        {labelNote && <span className="block font-normal text-muted md:text-[12px]">{labelNote}</span>}
-      </label>
-      <div className="min-w-0">
-        {control}
-        {(error || counter) && (
-          <div className="mt-1 flex items-start gap-3">
-            {error && (
-              <p id={errorId} className="flex flex-1 items-start gap-1.5 text-[13px] leading-snug text-danger">
-                <CircleAlert className="mt-px h-4 w-4 shrink-0" strokeWidth={2} aria-hidden="true" />
-                {error}
-              </p>
-            )}
-            {counter && (
-              <p id={counterId} className="ml-auto shrink-0 text-[12px] text-muted">
-                {value.length}/{attrs.maxLength}
-              </p>
-            )}
-          </div>
+      <label
+        htmlFor={name}
+        className="mb-2 flex flex-wrap items-center gap-1 text-sm font-semibold text-navy"
+      >
+        {field.label}
+
+        {field.labelNote && (
+          <span className="font-normal text-muted">
+            {field.labelNote}
+          </span>
         )}
-      </div>
+
+        {field.required && (
+          <span className="text-danger" aria-hidden="true">
+            *
+          </span>
+        )}
+      </label>
+
+      {field.type === 'select' ? (
+        <select {...inputProps}>
+          <option value="">
+            {field.placeholder || 'Select an option'}
+          </option>
+
+          {field.options?.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      ) : field.type === 'textarea' ? (
+        <textarea
+          {...inputProps}
+          rows={field.rows || 4}
+          className={`${commonClasses} ${borderClass} min-h-28 resize-y`}
+        />
+      ) : (
+        <input
+          {...inputProps}
+          type={field.type || 'text'}
+          inputMode={field.inputMode}
+        />
+      )}
+
+      {field.counter && (
+        <p className="mt-1 text-right text-xs text-muted">
+          {value.length}/{field.maxLength}
+        </p>
+      )}
+
+      {error && (
+        <p
+          id={`${name}-error`}
+          className="mt-1.5 text-xs text-danger"
+          role="alert"
+        >
+          {error}
+        </p>
+      )}
     </div>
-  )
+  );
 }

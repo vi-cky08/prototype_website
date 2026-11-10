@@ -5,7 +5,8 @@ import Button from './Button.jsx'
 import FormField from './FormField.jsx'
 import { CONTACT, whatsappLink } from '../data/contact.js'
 import { planEnquiry } from '../data/pricing.js'
-import { fieldOrder, fields, sections, validateField } from '../data/contactFormFields.js'
+import { fieldOrder, fields, sections, validateField, engineerServiceOptions,
+  rptServiceOptions, } from '../data/contactFormFields.js'
 
 // wa.me links get unreliable past ~2000 characters; leave headroom.
 const URL_MAX = 1800
@@ -87,17 +88,42 @@ export default function ContactForm() {
     if (sentence) setValues((v) => (v.description ? v : { ...v, description: sentence }))
   }, [plan])
 
+  // drop down boxes
   const change = (name, value) => {
-    setValues((v) => ({ ...v, [name]: value }))
-    // Re-check live only once a field is showing an error, so the message clears as soon as it's fixed.
-    if (errors[name]) setErrors((er) => ({ ...er, [name]: validateField(name, value) }))
+  setValues((previous) => ({
+    ...previous,
+    [name]: value,
+
+    // Clear the previous service when category changes
+    ...(name === 'serviceCategory'
+      ? { serviceName: '' }
+      : {}),
+  }))
+
+  if (errors[name]) {
+    setErrors((previous) => ({
+      ...previous,
+      [name]: validateField(name, value),
+    }))
   }
+
+  if (name === 'serviceCategory') {
+    setErrors((previous) => ({
+      ...previous,
+      serviceName: '',
+    }))
+  }
+}
 
   const blur = (name) => setErrors((er) => ({ ...er, [name]: validateField(name, values[name]) }))
 
   const submit = (e) => {
     e.preventDefault()
     const found = validateAll(values)
+    // Require a service after the user selects a category
+if (values.serviceCategory && !values.serviceName) {
+  found.serviceName = 'Please select a service.'
+}
     setErrors(found)
     const first = fieldOrder.find((name) => found[name])
     if (first) {
@@ -117,11 +143,42 @@ export default function ContactForm() {
     setErrors({})
   }
 
-  const renderField = (name, labelWidth = LABEL_W) => (
+  const renderField = (name, labelWidth = LABEL_W) => {
+  // Hide the second dropdown until a category is selected
+  if (name === 'serviceName' && !values.serviceCategory) {
+    return null
+  }
+
+  let field = fields[name]
+
+  // Dynamically select the correct service list
+  if (name === 'serviceName') {
+    let options = []
+
+    if (values.serviceCategory === 'Engineer Service') {
+      options = engineerServiceOptions
+    } else if (values.serviceCategory === 'RPT Service') {
+      options = rptServiceOptions
+    }
+
+    field = {
+      ...fields.serviceName,
+
+      label:
+        values.serviceCategory === 'Engineer Service'
+          ? 'Engineer Service'
+          : 'RPT Service',
+
+      placeholder: 'Select Service',
+      options,
+    }
+  }
+
+  return (
     <FormField
       key={name}
       name={name}
-      field={fields[name]}
+      field={field}
       value={values[name]}
       error={errors[name]}
       onChange={change}
@@ -129,6 +186,7 @@ export default function ContactForm() {
       labelWidth={labelWidth}
     />
   )
+}
 
   const renderRow = (row) =>
     Array.isArray(row) ? (

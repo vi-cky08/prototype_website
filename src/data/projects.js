@@ -1,8 +1,8 @@
-import waterPhantom from '../assets/project-water-phantom.svg'
-import evTrike from '../assets/project-ev-trike.svg'
-import packingMachine from '../assets/project-packing-machine.svg'
-import gearbox from '../assets/project-transmission-gearbox.svg'
-import droneBox from '../assets/project-smart-drone-box.svg'
+import waterPhantom from '../assets/project-water-phantom.png'
+import evTrike from '../assets/project-ev-trike.png'
+import packingMachine from '../assets/project-packing-machine.png'
+import gearbox from '../assets/project1-transmision-gearbox.png'
+import droneBox from '../assets/project-smart-drone-box.png'
 
 export const projectsIntro = {
   eyebrow: 'The Engineering Journey',
@@ -17,9 +17,9 @@ export const projects = [
     category: 'Medical',
     workType: 'Product Development',
     image: waterPhantom,
-    challenge: 'Accurate radiation therapy simulation.',
-    solution: 'Precision design + rapid prototyping.',
-    result: 'Improved accuracy & usability.',
+    challenge: 'Achieving accurate radiation dose measurement for reliable cancer treatment simulation.',
+    solution: 'Precision CAD design, engineering validation, and rapid prototyping.',
+    result: 'Improved measurement accuracy, simulation reliability, and usability',
   },
   {
     id: 'ev-trike',
@@ -27,10 +27,10 @@ export const projects = [
     category: 'Automotive',
     workType: 'Product Development',
     image: evTrike,
-    challenge: 'Lightweight, efficient delivery vehicle.',
-    solution: 'Custom design + thermal management.',
+    challenge: 'Developing a lightweight electric delivery vehicle with improved efficiency and extended driving range.',
+    solution: 'Custom vehicle design, lightweight structural engineering, and optimized thermal management.',
     // Best reading of a blurry line in the reference image; please confirm.
-    result: '0.6s to 18km, 130 km range.',
+    result: 'Targeted 130 km driving range with improved energy efficiency and performance.',
   },
   {
     id: 'packing-machine',
@@ -38,9 +38,9 @@ export const projects = [
     category: 'Packaging',
     workType: 'SPM',
     image: packingMachine,
-    challenge: 'Reliable, efficient packaging solution.',
+    challenge: 'tube packing with reliability and size variation.',
     solution: 'Mechanical + electrical integration.',
-    result: 'Increased productivity.',
+    result: 'compact and repeatable fast with variable sizes and liquids solids etc.',
   },
   {
     id: 'transmission-gearbox',
@@ -48,9 +48,9 @@ export const projects = [
     category: 'Industrial',
     workType: 'Product Development',
     image: gearbox,
-    challenge: 'High precision, durability.',
-    solution: 'Optimized design + precision tooling.',
-    result: 'Improved performance & reliability.',
+    challenge: 'Achieving high precision, strength, and long-term durability in gearbox performance.',
+    solution: 'Developed an optimized gearbox design with precision engineering and custom tooling.',
+    result: 'Enhanced operational efficiency, improved durability, and reliable transmission performance.',
   },
   {
     id: 'smart-drone-box',
@@ -58,8 +58,8 @@ export const projects = [
     category: 'Aerospace',
     workType: 'Product Development',
     image: droneBox,
-    challenge: 'Rugged, lightweight, secure enclosure.',
-    solution: 'Custom design + 3D printing.',
-    result: 'Field ready, cost effective.',
+    challenge: 'Designing a lightweight, rugged, and secure enclosure to protect drone components in demanding field conditions.',
+    solution: 'Created a customized enclosure using 3D design and rapid 3D printing for functional validation.',
+    result: 'Delivered a field-ready, cost-effective enclosure with improved protection and practical usability.',
   },
 ]

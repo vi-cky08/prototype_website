@@ -3,7 +3,7 @@ export const navLinks = [
   { label: 'Home', to: '/home' },
   { label: 'Why Choose Us', to: '/why-choose-us' },
   { label: 'About Us', to: '/about-us' },
-  { label: 'Projects', to: '/projects' },
+  { label: 'Service', to: '/projects' },
   { label: 'Pricing', to: '/pricing' },
   { label: 'Contact', to: '/contact' },
 ]

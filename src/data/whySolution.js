@@ -1,5 +1,5 @@
 import { Box, CircleCheck } from 'lucide-react'
-import solutionImage from '../assets/why-solution.jpg'
+import solutionImage from '../assets/why-solution.png'
 
 // "Your Idea. Our Design. Real Solutions." section on /why-choose-us.
 // Edit the text below; the two `items` arrays drive the check lists in each panel.

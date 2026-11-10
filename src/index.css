@@ -168,3 +168,100 @@
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 35s) linear infinite;
 }
+
+
+/* BENEFITS HORIZONTAL AUTO SCROLL */
+
+.benefits-marquee {
+  display: flex;
+  width: max-content;
+  animation: benefits-scroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* BENEFITS ROW */
+
+.benefits-track {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* PAUSE ON HOVER */
+
+.benefits-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* INFINITE SCROLL */
+
+@keyframes benefits-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .benefits-marquee {
+    animation: none;
+  }
+}
+
+
+
+/* PROJECT AUTO SCROLL */
+
+.project-marquee {
+  display: flex;
+  width: max-content;
+  animation: project-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+/* PROJECT ROW */
+
+.project-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 16px;
+  padding-right: 16px;
+  list-style: none;
+}
+
+/* PAUSE ON HOVER */
+
+.project-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* INFINITE SCROLL */
+
+@keyframes project-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* MOBILE ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .project-marquee {
+    animation: none;
+  }
+}
+
+
+
+
+/* =========================================
+   WHY CHOOSE US - PREMIUM UI
+========================================= */

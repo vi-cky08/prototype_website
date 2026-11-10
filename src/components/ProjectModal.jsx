@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 import Button from './Button.jsx'
+import { div } from 'framer-motion/client'
 
 export default function ProjectModal({ project, onClose }) {
   const dialogRef = useRef(null)
@@ -12,6 +13,7 @@ export default function ProjectModal({ project, onClose }) {
   }, [project])
 
   return (
+    
     <dialog
       ref={dialogRef}
       onClose={onClose}
