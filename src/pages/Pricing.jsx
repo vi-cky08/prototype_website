@@ -11,6 +11,8 @@ import { Reveal } from '../components/Motion.jsx';
 
 import PriorityPlans from '../components/PriorityPlans.jsx';
 
+import PricingEnquiryPopup from '../components/PricingEnquiryPopup.jsx';
+
 import {
   additionalRates,
   notes,
@@ -39,15 +41,18 @@ export default function Pricing() {
         <div className="container-site">
 
           {/* PRICING HEADING */}
-
           <SectionHeading as="h1" {...pricingIntro} />
 
-          {/* PRICING TABLE */}
+          {/* PRICING ENQUIRY POPUP */}
+          <PricingEnquiryPopup />
 
+          {/* PRICING TABLE */}
           <PricingTable
             plans={plans}
             className="mt-12"
           />
+
+          
 
           {/* RESPONSIVE PLAN CARDS */}
 
