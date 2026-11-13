@@ -13,7 +13,7 @@ import ServiceCard from '../components/ServiceCard.jsx';
 import { Reveal } from '../components/Motion.jsx';
 import { services, servicesIntro } from '../data/services.js';
 
-import heroImage from '../assets/modern.png';
+import heroImage from '../assets/modern1.jpeg';
 
 // BENEFITS DATA
 const benefits = [

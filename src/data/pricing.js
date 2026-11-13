@@ -8,11 +8,12 @@ export const pricingIntro = {
 
 // TODO: confirm Dedicated standaloneValue (1,49,700) with the owner before launch.
 export const plans = [
-  { id: 'starter', name: 'Starter', fee: 18000, cadHours: 5, fdmHours: 5, conceptHours: 1, siteVisits: 1, standaloneValue: 19350, savings: 1350, savingsPercent: 6.98 },
-  { id: 'professional', name: 'Professional', fee: 36000, cadHours: 15, fdmHours: 10, conceptHours: 1, siteVisits: 1, standaloneValue: 42150, savings: 6150, savingsPercent: 14.59 },
-  { id: 'advanced', name: 'Advanced', fee: 68000, cadHours: 30, fdmHours: 25, conceptHours: 2, siteVisits: 2, standaloneValue: 84600, savings: 16600, savingsPercent: 19.62 },
-  { id: 'business', name: 'Business', fee: 92000, cadHours: 45, fdmHours: 35, conceptHours: 2, siteVisits: 2, standaloneValue: 118950, savings: 26950, savingsPercent: 22.66 },
   { id: 'dedicated', name: 'Dedicated', fee: 108000, cadHours: 60, fdmHours: 45, conceptHours: 3, siteVisits: 3, standaloneValue: 149700, savings: 41700, savingsPercent: 27.86 },
+  { id: 'business', name: 'Business', fee: 92000, cadHours: 45, fdmHours: 35, conceptHours: 2, siteVisits: 2, standaloneValue: 118950, savings: 26950, savingsPercent: 22.66 },
+  { id: 'advanced', name: 'Advanced', fee: 68000, cadHours: 30, fdmHours: 25, conceptHours: 2, siteVisits: 2, standaloneValue: 84600, savings: 16600, savingsPercent: 19.62 },
+  { id: 'professional', name: 'Professional', fee: 36000, cadHours: 15, fdmHours: 10, conceptHours: 1, siteVisits: 1, standaloneValue: 42150, savings: 6150, savingsPercent: 14.59 },
+  { id: 'starter', name: 'Starter', fee: 18000, cadHours: 5, fdmHours: 5, conceptHours: 1, siteVisits: 1, standaloneValue: 19350, savings: 1350, savingsPercent: 6.98 },
+  
 ]
 
 export const additionalRates = [

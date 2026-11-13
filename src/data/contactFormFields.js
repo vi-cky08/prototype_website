@@ -33,7 +33,7 @@ export const fields = {
   directorName: {
     label: "Director / Proprietor Name",
     messageLabel: "Director / Proprietor",
-    required: true,
+    // required: true,
     autoComplete: "off",
     maxLength: 80,
   },
@@ -107,9 +107,9 @@ export const fields = {
   },
 
   pan: {
-    label: "PAN Number of Company / Individual",
+    label: "PAN Number of Company",
     messageLabel: "PAN",
-    required: true,
+    // required: true,
     autoComplete: "off",
     maxLength: 10,
     placeholder: "ABCDE1234F",
@@ -132,7 +132,7 @@ export const fields = {
   },
 
   address: {
-    label: "Registered Address of Company",
+    label: "Registered Address of Company / Individual",
     messageLabel: "Registered Address",
     required: true,
     type: "textarea",
@@ -182,7 +182,7 @@ export const fields = {
   projectType: {
     label: "Project Type",
     messageLabel: "Project Type",
-    required: true,
+    // required: true,
     type: "select",
     requiredMessage: "Please choose a project type.",
     placeholder: "Select project type",
@@ -192,7 +192,7 @@ export const fields = {
   description: {
     label: "Project Description",
     messageLabel: "Description",
-    required: true,
+    // required: true,
     type: "textarea",
     rows: 5,
     maxLength: 600,

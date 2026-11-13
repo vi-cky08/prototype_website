@@ -1,22 +1,30 @@
-import { Link } from 'react-router-dom'
-import { Mail, MapPin, Phone } from 'lucide-react'
-import Logo from './Logo.jsx'
-import { company, navLinks } from '../data/site.js'
-import { CONTACT, mapsLink } from '../data/contact.js'
-import { services } from '../data/services.js'
+import { Link } from "react-router-dom";
+import { Mail, MapPin, Phone } from "lucide-react";
+import Logo from "./Logo.jsx";
+import { company, navLinks } from "../data/site.js";
+import { CONTACT, mapsLink } from "../data/contact.js";
+import { services } from "../data/services.js";
 
-const footerServices = services.slice(0, 5)
+const footerServices = services.slice(0, 5);
 
-const heading = 'mb-3 text-xs font-semibold tracking-[0.2em] text-white uppercase lg:mb-4'
+const heading =
+  "mb-3 text-xs font-bold tracking-[0.15em] !text-white uppercase lg:mb-4";
 // 44px tap height on touch sizes, compact 8px rhythm on desktop
-const linkCls = 'flex min-h-11 items-center leading-snug underline-offset-4 transition-colors duration-200 hover:text-white hover:underline lg:min-h-0 lg:py-1'
+const linkCls =
+  "flex min-h-11 items-center leading-snug underline-offset-4 transition-colors duration-200 hover:text-white hover:underline lg:min-h-0 lg:py-1";
 
 // Plain line icon for contact rows (no background chip)
-function RowIcon({ icon: Icon, className = '' }) {
-  return <Icon className={`h-5 w-5 shrink-0 text-on-dark ${className}`} strokeWidth={1.75} aria-hidden="true" />
+function RowIcon({ icon: Icon, className = "" }) {
+  return (
+    <Icon
+      className={`h-5 w-5 shrink-0 text-on-dark ${className}`}
+      strokeWidth={1.75}
+      aria-hidden="true"
+    />
+  );
 }
 
-function LinkColumn({ title, links, className = '' }) {
+function LinkColumn({ title, links, className = "" }) {
   return (
     <div className={className}>
       <h3 className={heading}>{title}</h3>
@@ -30,7 +38,7 @@ function LinkColumn({ title, links, className = '' }) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 export default function Footer() {
@@ -39,22 +47,62 @@ export default function Footer() {
       {/* Mobile: one column (services hidden). Tablet: 2x2 (Brand | Contact, Links | Services). Desktop: 4 columns. */}
       <div className="container-site grid gap-6 pt-7 pb-4 md:grid-cols-2 md:gap-x-10 md:gap-y-8 md:pt-9 md:pb-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)_minmax(0,1.25fr)_minmax(0,1.15fr)] lg:gap-x-12 lg:pt-12 lg:pb-10">
         <div className="md:order-1 lg:order-none">
-          <Link to="/home" aria-label="Prototype Design home" className="inline-block">
+          {/* <Link to="/home" aria-label="Prototype Design home" className="inline-block">
             <Logo inverted />
+          </Link> */}
+
+          <Link
+            to="/home"
+            aria-label="GICE Design and Development home"
+            className="group inline-flex flex-col items-start"
+          >
+            <span
+              className="
+      text-2xl font-extrabold
+      tracking-wide text-white
+      transition-colors duration-300
+      group-hover:text-blue-300
+      sm:text-3xl
+    "
+            >
+              GICE
+            </span>
+
+            <span
+              className="
+      -mt-1 text-xs font-bold
+      uppercase tracking-[0.16em]
+      text-blue-300 sm:text-sm
+    "
+            >
+              Design & Development
+            </span>
+
+            <span className="mt-1 text-[9px] tracking-[0.18em] text-white/50">
+              ENGINEERING SOLUTIONS
+            </span>
           </Link>
-          <p className="mt-3 text-base font-semibold text-white">{company.tagline}</p>
+
+          <p className="mt-3 text-base font-semibold text-white">
+            {company.tagline}
+          </p>
           <p className="mt-1.5 line-clamp-3 max-w-[320px] text-sm leading-relaxed">
-            Design, DFMA, Rapid Prototyping, Tooling, Validation and Production Support under one engineering roof.
+            Design, DFMA, Rapid Prototyping, Tooling, Validation and Production
+            Support under one engineering roof.
           </p>
         </div>
 
-        <LinkColumn title="Quick Links" links={navLinks} className="md:order-3 lg:order-none" />
+        <LinkColumn
+          title="Quick Links"
+          links={navLinks}
+          className="md:order-3 lg:order-none"
+        />
 
         <LinkColumn
           title="Services"
           links={[
-            ...footerServices.map((s) => ({ label: s.title, to: '/projects' })),
-            { label: 'View all services', to: '/projects' },
+            ...footerServices.map((s) => ({ label: s.title, to: "/projects" })),
+            { label: "View all services", to: "/projects" },
           ]}
           className="hidden md:order-4 md:block lg:order-none"
         />
@@ -92,7 +140,10 @@ export default function Footer() {
             )}
             <li className="flex items-center gap-3">
               <RowIcon icon={Phone} />
-              <a href={`tel:${CONTACT.phoneTel}`} className="-my-3 py-3 transition-colors duration-200 hover:text-white">
+              <a
+                href={`tel:${CONTACT.phoneTel}`}
+                className="-my-3 py-3 transition-colors duration-200 hover:text-white"
+              >
                 {CONTACT.phoneDisplay}
               </a>
             </li>
@@ -104,10 +155,11 @@ export default function Footer() {
         {/* 80px bottom space on phones and tablets so the floating buttons never cover the copyright */}
         <div className="container-site py-3.5 text-center text-[13px] max-lg:pb-20 lg:py-5 lg:text-xs">
           <p>
-            © 2026 {CONTACT.legalName}.<span className="max-sm:hidden"> All rights reserved.</span>
+            © 2026 {CONTACT.legalName}.
+            <span className="max-sm:hidden"> All rights reserved.</span>
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

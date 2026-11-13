@@ -1,6 +1,6 @@
 import { Award, BadgeCheck, Briefcase, GraduationCap } from 'lucide-react'
-import portrait from '../assets/director-portrait.svg'
-import certificate from '../assets/chartered-certificate.svg'
+import portrait from '../assets/Director1.png'
+import certificate from '../assets/certificate.png'
 import banner from '../assets/vision-mission-banner.svg'
 
 export const director = {
@@ -40,7 +40,7 @@ export const charteredEngineer = {
     'Professional technical review',
   ],
   cta: 'Learn Why Chartered Engineering Matters',
-  ctaHref: 'https://www.ieindia.org/web/membersearch?option=find-discrepancies',
+  ctaHref: 'https://www.ieindia.org/web/certification/charteredengg',
   ctaAriaLabel: 'Learn why chartered engineering matters (opens in a new tab)',
   more: [
     'Chartered status is awarded by The Institution of Engineers (India) after a peer review of education, professional experience and engineering responsibility.',

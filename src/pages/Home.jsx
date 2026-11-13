@@ -107,9 +107,13 @@ export default function Home() {
 
             {/* BUTTONS */}
 
-            <StaggerItem className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <StaggerItem className="relative z-10 mt-9 flex w-full min-w-0 max-w-full flex-row items-stretch gap-2 printer-events-auto sm-gap-3 sm:flex-wrap">
 
-              <Button to={hero.primaryCta.to}>
+              <Button to={hero.primaryCta.to}
+              className="min-w-0
+               flex-1 whitespace-normal !px-2 text-center text-[11px] leading-tight sm:flex-none sm:!px-6 sm:text-sm
+              "
+              >
                 {hero.primaryCta.label}
 
                 <ArrowRight

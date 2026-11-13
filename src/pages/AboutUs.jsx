@@ -10,7 +10,12 @@ import {
   MessageCircle,
 } from 'lucide-react';
 
+
 import { Link } from 'react-router-dom';
+
+
+import whyHeroBg from "../assets/why-hero-bg.png";
+import visionBg from "../assets/mission-vission-banner.png";
 
 import SectionHeading, {
   Eyebrow,
@@ -84,14 +89,23 @@ function SubList({ title, items }) {
 
 export default function AboutUs() {
   return (
-    <main className="overflow-hidden bg-white">
+    <main className="overflow-hidden bg-white"
+    >
 
       {/* A. COMPANY INTRODUCTION */}
       <CompanyIntro />
 
 
       {/* B. VISION AND MISSION */}
-      <section className="bg-white px-5 py-8 sm:px-8 lg:px-12">
+      <section className="bg-white px-5 py-8 sm:px-8 lg:px-12"
+      style={{
+                backgroundImage: `linear-gradient(
+                rgba(255, 255, 255, 0.88),
+                rgba(255, 255, 255, 0.92)
+                ),
+                url(${whyHeroBg})`,
+              }}
+      >
 
         <div className="mx-auto max-w-[1400px]">
 
@@ -101,7 +115,7 @@ export default function AboutUs() {
           ">
 
             <img
-              src={visionMission.image}
+              src={visionBg}
               alt=""
               loading="lazy"
               className="
@@ -157,12 +171,14 @@ export default function AboutUs() {
 
                       <div>
 
-                        <h2 className="text-2xl font-extrabold text-white">
+                        <h2 className="vision-mission-description text-2xl sm:text-3xl font-extrabold tracking-tight"
+                         style={{ color: "white" }}>
                           {block.title}
                         </h2>
 
                         <p className="
-                          mt-3 text-sm leading-6
+                          mt-3 text-sm leading-7
+                          font-medium
                           text-white/85 sm:text-[15px]
                         ">
                           {block.text}
@@ -188,7 +204,16 @@ export default function AboutUs() {
       <section className="
         bg-[#F4F8FE] px-5 py-10
         sm:px-8 lg:px-12 lg:py-14
-      ">
+      "
+      style={{
+                backgroundImage: `linear-gradient(
+                rgba(255, 255, 255, 0.88),
+                rgba(255, 255, 255, 0.92)
+                ),
+                url(${whyHeroBg})`,
+              }}
+      
+      >
 
         <div className="mx-auto max-w-[1400px]">
 
@@ -438,7 +463,16 @@ export default function AboutUs() {
       <section className="
         bg-white px-5 py-12
         sm:px-8 lg:px-12 lg:py-16
-      ">
+      "
+      style={{
+                backgroundImage: `linear-gradient(
+                rgba(255, 255, 255, 0.88),
+                rgba(255, 255, 255, 0.92)
+                ),
+                url(${whyHeroBg})`,
+              }}
+      
+      >
 
         <div className="mx-auto max-w-[1400px]">
 
@@ -548,6 +582,7 @@ export default function AboutUs() {
 
       {/* E. CONTACT CTA - HIGHLIGHTED */}
       <section className="
+        about-contact-cta
         relative isolate overflow-hidden
         bg-[#092653] px-5 py-14
         sm:px-8 lg:px-12 lg:py-16

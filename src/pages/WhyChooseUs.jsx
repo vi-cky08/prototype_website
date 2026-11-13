@@ -13,6 +13,8 @@ import SolutionPanel from '../components/SolutionPanel.jsx';
 import ProcessStep from '../components/ProcessStep.jsx';
 import Card from '../components/Card.jsx';
 
+import whyHeroBg from "../assets/why-hero-bg.png";
+
 import {
   Reveal,
   Stagger,
@@ -56,7 +58,16 @@ export default function WhyChooseUs() {
           A. HERO SECTION
       ================================= */}
 
-      <section className="why-hero relative overflow-hidden">
+      <section className="why-hero relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{
+          backgroundImage: `linear-gradient(
+          rgba(255, 255, 255, 0.88),
+          rgba(255, 255, 255, 0.92)
+          ),
+          url(${whyHeroBg})`,
+        }}
+      
+      >
 
         <div className="why-hero-grid" />
 
@@ -223,7 +234,7 @@ export default function WhyChooseUs() {
                     <h2 className="
                       mt-10 max-w-sm
                       text-3xl leading-tight
-                      font-extrabold text-white
+                      font-extrabold !text-white
                       sm:text-4xl
                     ">
                       From Concept
@@ -271,7 +282,7 @@ export default function WhyChooseUs() {
 
                 {/* MANUFACTURING READY FLOATING CARD */}
 
-                <div className="
+                {/* <div className="
                   absolute
                   -bottom-5 left-4
                   z-20
@@ -317,7 +328,7 @@ export default function WhyChooseUs() {
 
                   </div>
 
-                </div>
+                </div> */}
 
               </div>
 
@@ -338,7 +349,16 @@ export default function WhyChooseUs() {
         section-y why-reasons-section
         relative overflow-hidden
         bg-[#F4F8FE]
-      ">
+      "
+      style={{
+          backgroundImage: `linear-gradient(
+          rgba(255, 255, 255, 0.88),
+          rgba(255, 255, 255, 0.92)
+          ),
+          url(${whyHeroBg})`,
+        }}
+      
+      >
 
         <div className="container-site relative z-10">
 
@@ -397,7 +417,16 @@ export default function WhyChooseUs() {
           C. OUR SOLUTIONS
       ================================= */}
 
-      <section className="section-y bg-white">
+      <section className="section-y bg-white"
+      style={{
+          backgroundImage: `linear-gradient(
+          rgba(255, 255, 255, 0.88),
+          rgba(255, 255, 255, 0.92)
+          ),
+          url(${whyHeroBg})`,
+        }}
+      
+      >
 
         <div className="container-site">
 
@@ -614,7 +643,16 @@ export default function WhyChooseUs() {
 
 <section className="
   section-y bg-[#F4F8FE]
-">
+"
+style={{
+          backgroundImage: `linear-gradient(
+          rgba(255, 255, 255, 0.88),
+          rgba(255, 255, 255, 0.92)
+          ),
+          url(${whyHeroBg})`,
+        }}
+
+>
 
   <div className="container-site">
 

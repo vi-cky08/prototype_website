@@ -4,6 +4,8 @@ import Card from './Card.jsx'
 import { Reveal } from './Motion.jsx'
 import { companyIntro } from '../data/team.js'
 
+import whyHeroBg from "../assets/why-hero-bg.png";
+
 const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 function Highlighted({ text, highlights }) {
@@ -22,7 +24,16 @@ function Highlighted({ text, highlights }) {
 export default function CompanyIntro() {
   const { eyebrow, title, text, highlights } = companyIntro
   return (
-    <section className="section-y relative overflow-hidden bg-grey">
+    <section className="section-y relative overflow-hidden bg-grey"
+    style={{
+          backgroundImage: `linear-gradient(
+          rgba(255, 255, 255, 0.88),
+          rgba(255, 255, 255, 0.92)
+          ),
+          url(${whyHeroBg})`,
+        }}
+    
+    >
       <div className="container-site relative">
         <Reveal>
           <Eyebrow className="mb-4">{eyebrow}</Eyebrow>

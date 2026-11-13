@@ -23,7 +23,7 @@ export default function FeaturedProjects() {
       </Reveal>
 
       {/* HORIZONTAL AUTO SCROLL */}
-      <div className="relative mt-12 w-full overflow-hidden">
+      <div className="relative mt-12 w-full min-w-0 max-w-full overflow-hidden">
 
         <div className="project-marquee">
 

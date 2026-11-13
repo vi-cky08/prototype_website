@@ -42,6 +42,13 @@ function buildWhatsAppUrl(values) {
       `${fields.address.messageLabel}: ${address}`,
       ...['city', 'state', 'pinCode', 'gst'].map(line),
       '',
+      
+      'SERVICE DETAILS',
+      line('serviceCategory'),
+      line('serviceName'),
+
+      '',
+
       'PROJECT DETAILS',
       line('projectType'),
       `${fields.description.messageLabel}: ${description}`,

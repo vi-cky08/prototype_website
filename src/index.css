@@ -78,15 +78,85 @@
   to { opacity: 1; }
 }
 
+
 @layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overflow-y: auto;
+
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--color-primary-300) var(--color-sky-soft);
   }
+
   body {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+
+    overflow-x: clip;
+    overflow-y: auto;
+
     @apply bg-page font-sans text-ink antialiased;
   }
+
+  #root {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  #root {
+    animation: var(--animate-fade-in);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading text-navy;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-primary-200);
+    color: var(--color-navy-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+
   /* Quick first-paint fade so the app doesn't pop in */
   #root { animation: var(--animate-fade-in); }
 
@@ -117,7 +187,7 @@
       transition-duration: 0.01ms !important;
     }
   }
-}
+
 
 /* ===== Layout ===== */
 @utility container-site {
@@ -214,11 +284,14 @@
 
 
 
+
 /* PROJECT AUTO SCROLL */
 
 .project-marquee {
   display: flex;
   width: max-content;
+  max-width: none;
+  flex-shrink: 0;
   animation: project-scroll 35s linear infinite;
   will-change: transform;
 }
@@ -227,10 +300,13 @@
 
 .project-track {
   display: flex;
+  width: max-content;
   flex-shrink: 0;
   gap: 16px;
   padding-right: 16px;
   list-style: none;
+  min-width: 0;
+  margin: 0;
 }
 
 /* PAUSE ON HOVER */
@@ -256,12 +332,35 @@
 @media (prefers-reduced-motion: reduce) {
   .project-marquee {
     animation: none;
+    transform: none;
   }
 }
 
 
 
-
 /* =========================================
-   WHY CHOOSE US - PREMIUM UI
+   WHY CHOOSE US - ENGINEERING JOURNEY
+   Scoped text visibility fix
 ========================================= */
+
+.why-journey-section h2,
+.why-journey-section h3 {
+  color: #ffffff !important;
+}
+
+/* Step descriptions */
+.why-journey-section li {
+  color: #dbeafe;
+}
+
+/* Ensure checklist text remains readable */
+.why-journey-section li p,
+.why-journey-section li span {
+  color: #dbeafe;
+}
+
+
+/* About Us - Contact CTA heading visibility fix */
+.about-contact-cta h2 {
+  color: #ffffff !important;
+}

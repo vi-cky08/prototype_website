@@ -1,11 +1,19 @@
 
-import enclosures from '../assets/Enclosures.png';
-import jigsFixture from '../assets/JigsFixture.png';
+import enclosures from '../assets/Enclosures1.png';
+import jigsFixture from '../assets/JigsFixture1.png';
 import precision from '../assets/Precision.png';
-import guards from '../assets/Guards.png';
-import inspectionGauges from '../assets/Inspection-Gauges.png';
-import packingTooling from '../assets/Packing-Tooling.png';
-import modern from '../assets/modern.png';
+import guards from '../assets/Guards1.png';
+
+import packingTooling from '../assets/packing-tooling.jpeg';
+import jaws from '../assets/Soft-jaws.png';
+import Automotive from '../assets/Automotive-prototype.jpeg';
+import Printed from '../assets/3d-printing.png';
+import welding from '../assets/Welding.png';
+import inspectionGauge from '../assets/inspection-guages.png';
+import FoodProcessing from '../assets/food-processing.png';
+import industrialProduct from '../assets/Industrial-Product.png';
+import specialMachine from '../assets/SpecialMachine.png';
+
 
 export const servicesIntro = {
   eyebrow: 'What We Build',
@@ -55,7 +63,7 @@ export const services = [
   },
 
   {
-    image: precision,
+    image: Automotive,
     title: 'Automotive Prototype Body Parts',
     description:
       'Prototype interior and body components for automotive development.',
@@ -93,7 +101,7 @@ export const services = [
   },
 
   {
-    image: inspectionGauges,
+    image: inspectionGauge,
     title: 'Inspection Gauges',
     description:
       'Gauges and checking fixtures for dimensional verification.',
@@ -122,7 +130,7 @@ export const services = [
   },
 
   {
-    image: precision,
+    image: jaws,
     title: 'CNC/Machining Soft Jaws',
     description:
       'Workholding solutions for accurate, repeatable machining.',
@@ -137,7 +145,7 @@ export const services = [
   },
 
   {
-    image: guards,
+    image: welding,
     title: 'Welding Fixtures',
     description:
       'Fixtures that hold parts in position for consistent, accurate welding.',
@@ -150,7 +158,7 @@ export const services = [
   },
 
   {
-    image: modern,
+    image: Printed,
     title: '3D-Printed Replacement Parts',
     description:
       'Fast, custom replacement parts produced by 3D printing.',
@@ -163,7 +171,7 @@ export const services = [
   },
 
   {
-    image: packingTooling,
+    image: FoodProcessing,
     title: 'Food-Processing Machine Components',
     description:
       'Custom components for food-processing and packaging machines.',
@@ -180,7 +188,7 @@ export const services = [
   },
 
   {
-    image: modern,
+    image: industrialProduct,
     title: 'Industrial Product Design & Engineering',
     description:
       'Concepts developed into detailed, manufacturing-ready engineering designs.',
@@ -196,7 +204,7 @@ export const services = [
   },
 
   {
-    image: precision,
+    image: specialMachine,
     title: 'Special Purpose Machine Design & Development',
     description:
       'Custom machines designed around your process and production goals.',
