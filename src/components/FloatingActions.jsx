@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import { ArrowUp, MessageCircle } from 'lucide-react'
+import { ArrowUp } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
+
 import { whatsappLink } from '../data/contact.js'
+
 
 // Bottom-right floating actions: WhatsApp chat (always) and Back to top (after 600px of scroll).
 // Kept small and tucked into the corner (with safe-area padding) so they never cover content on phones.
@@ -43,7 +46,8 @@ export default function FloatingActions() {
         aria-label="Chat with us on WhatsApp (opens in a new tab)"
         className={`${fab} pointer-events-auto bg-success text-white hover:bg-[#116932]`}
       >
-        <MessageCircle className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
+        {/* <MessageCircle className="h-6 w-6" strokeWidth={2} aria-hidden="true" /> */}
+          <FaWhatsapp className="h-7 w-7" aria-hidden="true" />
       </a>
     </div>
   )

@@ -283,6 +283,102 @@
 }
 
 
+/* Featured Projects - Mobile Card Width Fix */
+
+
+/* =====================================
+   FEATURED PROJECTS - RESPONSIVE SLIDER
+===================================== */
+
+
+/* =========================================
+   FEATURED PROJECTS - RESPONSIVE SLIDER
+========================================= */
+
+/* Slider container */
+.project-slider {
+  width: 100%;
+  min-width: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+/* Individual project slide */
+.project-slide {
+  flex: 0 0 380px;
+  width: 380px;
+  min-width: 0;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+/* Project card fills its slide */
+.project-slide .project-card-inner {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Images remain inside card */
+.project-slide img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .project-slider {
+    padding-left: 24px;
+    padding-right: 24px;
+    scroll-padding-left: 24px;
+  }
+
+  .project-slide {
+    flex-basis: 360px;
+    width: 360px;
+  }
+}
+
+/* Desktop and laptop */
+@media (min-width: 1024px) {
+  .project-slider {
+    padding-left: 32px;
+    padding-right: 32px;
+    scroll-padding-left: 32px;
+  }
+
+  .project-slide {
+    flex-basis: 380px;
+    width: 380px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 639px) {
+  .project-slider {
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
+    gap: 16px;
+  }
+
+  .project-slide {
+    flex: 0 0 calc(100vw - 32px);
+    width: calc(100vw - 32px);
+    min-width: 0;
+  }
+
+  .project-card-inner {
+    min-width: 0;
+  }
+}
+
 
 
 /* PROJECT AUTO SCROLL */
