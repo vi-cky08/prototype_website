@@ -1,4 +1,5 @@
 import { formatINR } from '../data/pricing.js'
+import CountUp from './CountUp.jsx'
 
 // Label / amount rows separated by thin lines.
 export default function RateList({ rates, className = '' }) {
@@ -7,7 +8,7 @@ export default function RateList({ rates, className = '' }) {
       {rates.map((r) => (
         <li key={r.label} className="flex items-center justify-between border-b border-line py-3.5">
           <span className="min-w-0 text-ink">{r.label}</span>
-          <span className="shrink-0 font-bold text-navy tabular-nums">{formatINR(r.amount)}</span>
+          <span className="shrink-0 font-bold text-navy tabular-nums"> <CountUp value={r.amount} duration={2000} /></span>
         </li>
       ))}
     </ul>

@@ -12,11 +12,27 @@ export const director = {
   image: portrait,
   imageAlt: 'Portrait of Er. A. Bharath, Technical Director',
   credentials: [
-    { icon: Award, text: 'GTTC Graduate Tool & Die Maker' },
-    { icon: BadgeCheck, text: 'AMIE Mechanical (AM-152329-0)' },
-    { icon: GraduationCap, text: 'M.Tech Thermals' },
-    { icon: Briefcase, text: 'MBA Production Management' },
-  ],
+  {
+    icon: BadgeCheck,
+    text: 'Associate Member of the Institution of Engineers',
+    subtext: 'Membership No: AM-152329-0 | The Institution of Engineers (India)',
+  },
+  {
+    icon: Award,
+    text: 'Diploma Tool & Die Making',
+    subtext: 'Government Tool Room & Training Centre, Bangalore',
+  },
+  {
+    icon: GraduationCap,
+    text: 'M.Tech Thermal Engineering',
+    subtext: 'Visvesvaraya Technological University',
+  },
+  {
+    icon: Briefcase,
+    text: 'MBA Operation and Production',
+    subtext: 'Karnataka State Open University',
+  },
+],
   experience: ['Technical Director', 'Tool & Die making expertise', 'Engineering principles & practices'],
   specializations: ['Production Management', 'Thermal Engineering', 'SPM Development', 'Manufacturing Integration'],
   quote: [
@@ -40,6 +56,11 @@ export const charteredEngineer = {
     'Professional technical review',
   ],
   cta: 'Learn Why Chartered Engineering Matters',
+
+   // First button: Engineering quote section
+  quoteCtaHref: 'https://www.ieindia.org/web/membersearch?option=find-member',
+  
+  // Second button: Benefits card
   ctaHref: 'https://www.ieindia.org/web/certification/charteredengg',
   ctaAriaLabel: 'Learn why chartered engineering matters (opens in a new tab)',
   more: [

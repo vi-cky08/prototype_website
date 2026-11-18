@@ -336,46 +336,59 @@ export default function AboutUs() {
 
                     <ul className="grid gap-3 sm:grid-cols-2">
 
-                      {director.credentials.map(({ icon: Icon, text }) => (
+                      {director.credentials.map(({ icon: Icon, text, subtext }) => (
 
-                        <li
-                          key={text}
-                          className="
-                            group flex min-h-[68px]
-                            items-center gap-3
-                            rounded-xl border border-blue-100
-                            bg-gradient-to-r from-blue-50/80
-                            to-white px-4 py-3
-                            transition-all duration-300
-                            hover:-translate-y-1
-                            hover:border-blue-300
-                            hover:shadow-md
-                          "
-                        >
+  <li
+    key={text}
+    className="
+      group flex min-h-[85px]
+      items-center gap-3
+      rounded-xl border border-blue-100
+      bg-gradient-to-r from-blue-50/80
+      to-white px-4 py-3
+      transition-all duration-300
+      hover:-translate-y-1
+      hover:border-blue-300
+      hover:shadow-md
+    "
+  >
 
-                          <span className="
-                            flex h-10 w-10 shrink-0
-                            items-center justify-center
-                            rounded-lg bg-blue-100
-                            text-blue-700 transition
-                            group-hover:bg-blue-700
-                            group-hover:text-white
-                          ">
+    {/* ICON */}
+    <span className="
+      flex h-10 w-10 shrink-0
+      items-center justify-center
+      rounded-lg bg-blue-100
+      text-blue-700 transition
+      group-hover:bg-blue-700
+      group-hover:text-white
+    ">
+      <Icon size={19} />
+    </span>
 
-                            <Icon size={19} />
+    {/* QUALIFICATION DETAILS */}
+    <div className="min-w-0">
 
-                          </span>
+      <p className="
+        text-sm font-bold
+        leading-5 text-[#19365F]
+      ">
+        {text}
+      </p>
 
-                          <span className="
-                            text-sm font-semibold
-                            leading-5 text-[#19365F]
-                          ">
-                            {text}
-                          </span>
+      {subtext && (
+        <p className="
+          mt-1 text-xs
+          leading-5 text-slate-500
+        ">
+          {subtext}
+        </p>
+      )}
 
-                        </li>
+    </div>
 
-                      ))}
+  </li>
+
+))}
 
                     </ul>
 
@@ -431,7 +444,7 @@ export default function AboutUs() {
                 </div>
 
                 <a
-                  href={ce.ctaHref}
+                  href={ce.quoteCtaHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="

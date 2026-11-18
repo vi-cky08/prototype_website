@@ -104,7 +104,7 @@ export default function ProjectCard({ project, onView }) {
         </div>
 
         {/* VIEW PROJECT */}
-        <button
+        {/* <button
           type="button"
           onClick={() => onView(project)}
           className="mt-auto inline-flex min-h-9 items-center gap-2 self-start text-[14px] font-bold text-blue-700 hover:text-blue-900"
@@ -115,7 +115,7 @@ export default function ProjectCard({ project, onView }) {
           <span className="sr-only">
             : {project.title}
           </span>
-        </button>
+        </button> */}
 
       </div>
     </Card>

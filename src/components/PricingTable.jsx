@@ -1,5 +1,6 @@
 import Button from './Button.jsx'
 import { formatINR, planContactLink, planRows } from '../data/pricing.js'
+import CountUp from './CountUp.jsx'
 
 // Desktop comparison (1024px and up). border-separate so the sticky header keeps its bottom line.
 // top-[72px] = the navbar height on desktop.
@@ -23,29 +24,55 @@ export default function PricingTable({ plans, className = '' }) {
               <th key={p.id} scope="col" className={`${cell} sticky top-[72px] z-10 border-line-strong bg-page text-center align-bottom`}>
                 <span className="block text-[15px] font-semibold text-navy">{p.name}</span>
                 <span className="mt-1 block text-[24px] leading-tight font-extrabold tracking-tight text-navy">
-                  {formatINR(p.fee)}
+                <CountUp value={p.fee} duration={2000} />
                 </span>
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
-          {planRows.map((row) => (
-            <tr key={row.key}>
-              <th scope="row" className={`${cell} text-left font-medium ${row.highlight ? 'font-bold text-primary' : 'text-navy'}`}>
-                {row.label}
-              </th>
-              {plans.map((p) => (
-                <td
-                  key={p.id}
-                  className={`${cell} text-center tabular-nums ${row.highlight ? 'font-bold text-primary' : 'text-ink'}`}
-                >
-                  {row.format ? row.format(p[row.key]) : p[row.key]}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+                
+<tbody>
+  {planRows.map((row) => (
+    <tr key={row.key}>
+      <th
+        scope="row"
+        className={`${cell} text-left font-medium ${
+          row.highlight
+            ? 'font-bold text-primary'
+            : 'text-navy'
+        }`}
+      >
+        {row.label}
+      </th>
+
+      {plans.map((p) => (
+        <td
+          key={p.id}
+          className={`${cell} text-center tabular-nums ${
+            row.highlight
+              ? 'font-bold text-primary'
+              : 'text-ink'
+          }`}
+        >
+          {['standaloneValue', 'savings'].includes(row.key) ? (
+            <>
+              ₹
+              <CountUp
+                value={p[row.key]}
+                duration={2000}
+              />
+            </>
+          ) : (
+            row.format
+              ? row.format(p[row.key])
+              : p[row.key]
+          )}
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
+
         <tfoot>
           <tr>
             <td />

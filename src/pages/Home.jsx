@@ -9,7 +9,7 @@ import { hero, stats } from '../data/home.js';
 import FeaturedProjects from '../components/FeaturedProjects.jsx';
 
 // Imported industrial background image
-import backgroundImage from '../assets/bg.png';
+import backgroundImage from '../assets/bg2.png';
 
 // Floating badges
 // const badges = [

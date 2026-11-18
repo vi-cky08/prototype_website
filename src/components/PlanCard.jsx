@@ -1,4 +1,5 @@
 import Button from './Button.jsx'
+import CountUp from './CountUp.jsx'
 import { formatINR, planContactLink, planRows } from '../data/pricing.js'
 
 // Stacked plan summary used below 1024px in place of PricingTable.
@@ -6,7 +7,7 @@ export default function PlanCard({ plan }) {
   return (
     <article className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-white p-5 sm:p-6">
       <h3 className="text-[17px] font-semibold">{plan.name}</h3>
-      <p className="mt-1 text-[28px] leading-tight font-extrabold tracking-tight text-navy">{formatINR(plan.fee)}</p>
+      <p className="mt-1 text-[28px] leading-tight font-extrabold tracking-tight text-navy"> <CountUp value={plan.fee} duration={2000} /></p>
 
       <dl className="mt-4 mb-6 border-t border-line text-[15px]">
         {planRows.map((row) => (
